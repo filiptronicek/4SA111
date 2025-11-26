@@ -1,0 +1,873 @@
+%=====================================================================================================!
+%               Úkol: formátování rozsáhlejšího strukturovaného textu v LaTeXu                        !
+%=====================================================================================================!
+%               Do odevzdávárny odevzdejte DVA soubory: TEX a PDF!                                    !
+%               Nezapomeňte přidat JEDEN ČESKÝ FILM do odpovídající kapitoly                          !
+%               a za název tohoto filmu do závorky "doplněno" (stejně jako v MS Word)                 ! 
+%=====================================================================================================!
+%                                                                                                     !
+%-------------------- Důležité upozornění ------------------------------------------------------------!
+% Pokud budete zdrojový TEX soubor editovat ve webovém prostředí Overleaf (příp. jiné podobné),       !
+% ověřte si, zda je pro tvorbu PDF použit XeLaTex (místo PDFLaTeX), příp. ještě jiný nástroj!         !
+% Pokud ano (pro Overleaf platilo při posledním ověřování)                                            !
+% pak je NUTNÉ část preambule týkající se češtiny vytvořit úplně jinou!                               !
+% Návod pro XeLaTeX: viz doporučená příručka pana Satrapy.                                            !
+% Pokud to neuděláte, v PDF bude min. část češtiny "pokažená" a budou vám za to strženy body          !
+%-------------------- Důležité doporučení ------------------------------------------------------------!
+% Nejen z důvodů výše doporočuji VŠEM studentům, aby formou KOMENTÁŘE (v PDF tedy nebude)             !
+% napsali na PRVNÍ řádek zdrojového TEX souboru OS, LaTex distribuci (prostředí) a nástroj pro PDF    !
+% Příklady:                                                                                           !
+% ---------                                                                                           !
+% Windows 10, instalace ve škole, PDFLaTex                                                            !
+% NEBO např.                                                                                          !
+% Windows 11, instalace jako ve škole na vlastním PC, PDFLaTeX                                        !
+% NEBO např.                                                                                          !
+% MacOS, doplňte název distribuce, doplňte použitý nástroj pro PDF                                    !
+% NEBO např.                                                                                          !
+% webové prostředí Overleaf.com, XeLaTeX                                                              !
+% atd. atd.                                                                                           !
+%-----------------------------------------------------------------------------------------------------!
+%
+% 1. Vytvořit vhodnou strukturu PREAMBULE LaTeX dokumentu.
+%    V příkazu documentclass:
+%    xa) vhodně zvolte typ dokumentu tak, aby hlavní kapitoly AUTOMATICKY začínaly na nové stránce,
+%    xb) explicitně nastavte papír A4 a výchozí velikost písma 12 bodů (anglosaskych, pt).
+%    Doplňte další nezbytné příkazy (zejména usepackage).
+%    POZOR: bude se lišit pro PDFLaTeX x XeLaTex x jiný nástroj (viz výše)
+%    Vhodnými příkazy zajistěte, že v dokumentu určitě nebudou "vdovy" a "sirotci" (parchanti).
+%    V případě potřeby vložte další příkazy.
+% 2. xSprávně vytvořit dvouúrovňovou strukturu všech kapitol:
+%    a) Úvod a tři jeho podkapitoly nejsou číslované, ale budou v obsahu.
+%    b) Ostatní kapitoly a podkapitoly jsou číslované (hlavní kapitoly jednotlivá období, podkapitoly jednotlivé filmy).
+%    xc) Text o jednotlivých filmech se skládá z jednoho až několika odstavců.
+%       Pozn. Jednotlivé odstavce jsem již vytvořil, ale je možné, že někde jsem zapomněl. V případě potřeby doplňte.
+% 3. xTitulní strana: Československý a český film v letech 1945–2024, jako jméno autora napište sebe.
+% 4. xObsah: bude na straně 2 a následujících. Nezapomeňte do obsahu přidat nečíslovanou kapitolu Úvod a její podkapitoly.
+% 5. Doplnění textu o filmu: Vyberte si oblíbený český film, který v textu NENÍ a doplňte stručný text (3 až 4 odstavce o filmu).
+%    Abych film v obsahu SNADNO NAŠEL, napište název podkapitoly takto: Název filmu (doplněno).
+% 6. Jednoduché zvýraznění textu: u přidaného filmu vhodně uveďte jeho název také v některém odstavci TUČNĚ a režiséra KURZÍVOU.
+% 7. Formátování odstavců a textů v rámci odstavce:
+%    a) V úvodu první kapitoly vytvořte číslovaný seznam filmů z tohoto období (1945 až 1960).
+%       V rámci textu o filmech Prázdniny pro psa a Obecná škola vytvoře nečíslovaný seznam (v textu je vyznačeno kde).      
+%    b) Správně VŠUDE rozlište SPOJOVNÍK a půlčtverčíkovou POMLČKU (N-dash): bez mezer nebo s mezerami dle kontextu.
+%    c) Zajistěte, že na zlomu jednotlivých řádků nebudou NESLABIČNÉ PŘELOŽKY a jiné NEVHODNÉ VÝRAZY: 
+%       Pro neslabičné předložky použijte PROGRAM vlna NEBO BALÍČEK encxvlna (dle vašeho výběru),
+%       ale doporučuji spíše balíček (tento balíček platí pro PDFLaTeX, pro XeLaTeX také balíček, ale jinak).
+%       Pro jiné nevhodné výrazy ručně vložte nezlomitelnou mezeru, tedy znak tilda.
+%    d) Vyřešte jiné nevhodné věci (nevhodné dělení slova, nevhodné formátování odstavce, všechna VAROVÁNÍ PŘI PŘEKLADU.
+%       VHODNÝM použitím dalších příkazů, které jsme probírali.
+% 8. NEPOVINNÉ: vytvoření TABULKY (neprobírali, proto je tento úkol nepovinný, jeden až dva BONUS body dle složitosti a kvality).
+%    Text vhodný pro VYZKOUŠENÍ jednoduché tabulky najdete formou KOMENTÁŘŮ na začátku kapitoly Vybrané filmy z období 1945–1960.
+%    a) menší jednoduchá tabulka: pro každý film jen název filmu, režisér, rok.
+%    b) větší jednoduchá tabulka: přo každý film navíc ještě žánr a poznámka (jako v MS Word).
+%    Upozornění: zejména ve verzi (b) se vám tabulka asi vytvoří "příliš široká".
+% 9. NEPOVINNÉ: bonus bod, pokud odevzdáte dvě verze dokumentu (2x .TEX + 2x .PDF), kde druhá verze má pro nadpisy nastavené
+%    tučné bezpatkové písmo s využitím balíčku "titlesec".
+%=============================== Konec zadání domácího úkolu ======================================================================= 
+%
+%
+
+% MacOS, MacTeX, PDFLaTeX
+\documentclass[a4paper,12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+
+\usepackage[all]{nowidow}
+\widowpenalty=10000
+\clubpenalty=10000
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage{array}
+\usepackage{changepage}
+
+\begin{document}
+
+%====== Titulní stránka dokumentu ==============
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\Huge\bfseries Československý a český film\\[0.3cm] v~letech 1945--2024\par}
+\vspace{2cm}
+{\Large Filip Troníček\par}
+\vfill
+{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+
+% Doplňte své jméno
+%
+%===================================================================!
+%       Tělo dokumentu                                              !
+%===================================================================!
+% Pro lepší orientaci jsou nadpisy vyznačeny opět formou komentářů: !
+% - pod nadpisy 1. úrovně je dvojítá čára (rovnítka)                ! 
+% - pod nadpisy 2. úrovně je jednoduchá čára (spojovníky)           !
+%===================================================================!
+
+%===== (nečíslováno) ======
+Filmový průmysl měl v~tehdejším Československu velkou tradici již v~době první republiky. V~roce 1921 založil Miloš Havel akciovou společnost A-B spojením několika distribučních společností. Na počátku 30. let 20. století jeho bratr Václav plánoval vystavět luxusní komplex rezidencí 5 km od Prahy. Miloš Havel navrhl, že k~tomu začlení i moderní filmové studio včetně podpůrných zařízení. Jako místo byl zvolen Barrandov. 
+
+\section*{Vznik Filmových továren AB na~Barrandově}
+\addcontentsline{toc}{section}{Vznik Filmových továren AB na~Barrandově}
+
+%----- (nečíslováno)-------------------
+Stavba byla založena na návrzích Maxe Urbana a začala 28. listopadu 1931. Při výstavbě bylo pamatováno na dostatečný prostor pro administrativu, sklady rekvizit a kostýmů, šatny herců, místnosti produkčních štábů i restaurační zařízení. Budovy měly vlastní elektrické sítě a výtopny, byly tu rovněž truhlářské dílny, střižny, projekční síně a laboratoře. Podle zahraničních zkušeností byly vystavěny dvě natáčecí haly o~rozměrech 25 krát 35 krát 10 metrů s~možností propojení.
+
+V~době svého vzniku patřily Barrandovské ateliéry svým technickým vybavením k~nejmodernějším v~Evropě. 14 měsíců po zahájení výstavby zde byl natočen první film Vražda v~Ostrovní ulici. Objem vyráběných filmů se velmi rychle zvedl:  studia měla 300 stálých zaměstnanců, produkovala 80 filmů ročně a začala zajímat zahraniční producenty. V~roce 1939 už ateliéry zabíraly plochu 4850 metrů čtverečných a celková výměra pozemků byla 45 000 metrů čtverečních.
+
+\section*{Doba protektorátu}
+\addcontentsline{toc}{section}{Doba protektorátu}
+
+%----- (nečíslováno) --------
+Den po nacistické okupaci Československa, 16. března 1939, se ateliérů pokusili zmocnit zástupci českých fašistů. Generál Radola Gajda pověřil tímto úkolem barrandovského asistenta režie Josefa Krause, který se rozhodl se svými společníky zbavit funkce ředitele Lavoslava Reichla a propustit i další židovské zaměstnance Barrandova. Tato akce se nezdařila a tak Radola Gajda posílá do ateliérů svého blízkého spolupracovníka a dlouholetého člena Národní obce fašistické dr. Ing. Zdeňka Zástěru, kterého doprovází režisér Václav Binovec a herec, režisér a producent Ladislav Brom. Ti si svolají všechny zaměstnance ateliérů, oznamují jim arizaci pražských filmových podniků a kin a znovu žádají propuštění všech židovských zaměstnanců.
+
+Miloš Havel, který je v~té době mimo Prahu, nakonec telefonicky vyzve doktora Zástěru k~opuštění ateliérů, což se také stane. Václav Binovec stále žádá o~propuštění židovských zaměstnanců, ale je členy správní rady vykázán z~jednací místnosti. Tím celý nezdařený pokus českých fašistů končí. Miloš Havel je však nakonec nacisty v~roce 1940 stejně donucen k~odprodeji svého většinového podílu ve společnosti a německá správa tak získává nad ateliéry kontrolu. Na valné hromadě A-B Barrandov 21. 11. 1941 navrhl ředitel Karl Schulz změnu názvu společnosti na Prag-Film, Aktiengesellschaft, což bylo schváleno 10. 2. 1942 a společnost byla zařazena do filmového koncernu UFA.
+
+V~ateliérech se natáčely filmy české i německé. České filmy se tematicky vyhýbaly událostem doby a převažovaly historické náměty, případně komedie a jednoduché příběhy. V~letech 1941–1945 zde byly postaveny (mj. za nucené účasti židovských pracovníků) tři navzájem propojené obrovské scény (celkem přes 3400 čtverečních metrů), s~kterými se Barrandov mohl začít srovnávat se studii v~Berlíně či Mnichově, a které přitahují poptávku filmařů dodnes. V~průběhu let 1940–1945 natočili Němci v~protektorátu na osmdesát říšských filmů (kromě Barrandova nacisté postupně ovládli filmovou továrnu Foja v~Radlicích, Host v~Hostivaři a filmové ateliéry ve Zlíně).
+
+\section*{Období po~druhé světové válce}
+\addcontentsline{toc}{section}{Období po~druhé světové válce}
+
+%----- (nečíslováno)--------
+Po druhé světové válce, 11. 8. 1945, podepsal prezident Edvard Beneš Dekret o~zestátnění československého filmu, který vstoupil v~platnost 28. 8. 1945. Zároveň začaly zasedat disciplinární rady filmových pracovníků, které měly posoudit a prověřit činnost filmařů za protektorátu. Řada zaměstnanců Barrandova tak dostala zákaz činnosti na několik měsíců, někteří zákaz doživotní. Studia zůstala pod vlastnictvím státu do roku 1991, organizačně spadala pod podnik s~názvem Československý státní film. Během tohoto období byly na Barrandově vystavěny filmové laboratoře, trikové studio, dabingové studio, stejně jako speciální efektové studio se zpětnou projekcí a vodní nádrž pro točení podvodních záběrů.
+
+Po roce 1989 bylo Studio Barrandov privatizováno; stát přestal poskytovat podporu pro českou filmovou tvorbu. Studia se s~touto změnou, neschopna vyrovnat se s~novým volnotržním prostředím, těžce potýkala; kolem roku 2000 se dokonce jednalo o~tom, že by byla zavřena. Ale již od konce 90. let 20. století se Barrandov mohl začít těšit přízni zahraničních, zejména amerických filmových produkcí a jeho služeb ve větší míře začaly využívat i zdejší televizní stanice. Na Barrandově nyní sídlí TV Nova a od začátku roku 2009 odtud vysílá i televizní stanice Barrandov TV, která byla se studii přímo vlastnicky propojena. 
+
+V~současné době Barrandovská studia nabízejí kompletní služby, schopné pokrýt vše, co se pojí s~filmovým natáčením, pro filmové produkce z~Česka i zahraničí. V~prosinci 2006 zde bylo navíc otevřeno veliké Studio MAX. Barrandov tak dnes nabízí 14 natáčecích hal (některé z~nich v~trvalém pronájmu), dále služby filmových laboratoří, stavby dekorací, dabingu, hudebního nahrávacího studia v~ulici Ve smečkách (dnes Smecky Music Studios) nebo jedné z~nejrozsáhlejších sbírek kostýmů a rekvizit na světě. Vlastní produkční aktivity rozvíjí prostřednictvím dceřiné společnosti Barrandov Productions.
+
+\chapter{Vybrané filmy z~období 1945--1960}
+
+\begin{table}[h]
+\begin{adjustwidth}{-1cm}{-1cm}  % extends 1cm on left and right
+\centering
+\caption{Vybrané filmy z~období 1945--1960}
+\small
+\begin{tabular}{|p{4.5cm}|p{3cm}|p{2.5cm}|c|p{3.5cm}|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} & \textbf{Poznámka} \\
+\hline
+Jan Roháč z~Dubé & Vladimír Borský & drama, historický & 1947 & první čs. barevný film \\
+\hline
+Císařův pekař -- Pekařův císař & Martin Frič & historická komedie & 1951 & dvojdílný film \\
+\hline
+Pyšná princezna & Bořivoj Zeman & pohádka & 1952 & \\
+\hline
+Afrika I: Z~Maroka na Kilimandžáro & Hanzelka, Zikmund, Novotný & dokumentární & 1952 & navazuje Afrika II \\
+\hline
+Byl jednou jeden král & Bořivoj Zeman & pohádka & 1955 & první film Werich + Burian \\
+\hline
+Hrátky s~čertem & Josef Mach & pohádka & 1956 & \\
+\hline
+Dobrý voják Švejk & Karel Steklý & komedie & 1956 & \\
+\hline
+Poslušně hlásím & Karel Steklý & komedie & 1958 & druhý díl „Švejka" \\
+\hline
+Vynález zkázy & Karel Zeman & sci-fi & 1958 & podle J. Verna \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+%================================
+V~tomto období se točí celá řada tzv. budovatelských filmů. Mezi filmy, které dodnes stojí za to zmínit (byť i v~nich najdeme řadu prvků poplatných době) patří např.:
+
+%===== Vytvořte ČÍSLOVANÝ seznam filmů z tohoto období ==========
+\begin{enumerate}
+\item Jan Roháč z~Dubé
+\item Císařův pekař -- pekařův císař
+\item Pyšná princezna
+\item Afrika~I: Z~Maroka na~Kilimandžáro
+\item Byl jednou jeden král
+\item Hrátky s~čertem
+\item Dobrý voják Švejk
+\item Poslušně hlásím
+\item Vynález zkázy
+\end{enumerate}
+%===== konec číslovaného seznamu ================================
+
+% ====================================================================================================
+% NEPOVINNÉ: text pro vytvoření případné TABULKY
+%            můžete vytvořit též jednodušší verzi tabulky, kde budou jen název, režisér, rok
+% ====================================================================================================
+% Název Režisér Žánr Rok Poznámka
+% Jan Roháč z Dubé	Vladimír Borský	drama, historický	1947	první československý barevný film
+% Císařův pekař – pekařův císař	Martin Frič	historická komedie	1951	dvojdílný film
+% Pyšná princezna	Bořivoj Zeman	pohádka	1952	
+% Afrika I. – Z Maroka na Kilimandžáro	Jiří Hanzelka, Miroslav Zikmund, Jaroslav Novotný	dokumentární	1952	navazuje Afrika II a volně pak Z Argentiny do Mexika
+% Byl jednou jeden král	Bořivoj Zeman	pohádka	1955	prvně Werich a Burian v jednom filmu
+% Hrátky s čertem	Josef Mach	pohádka	1956	
+% Dobrý voják Švejk	Karel Steklý	komedie	1956	
+% Poslušně hlásím	Karel Steklý	komedie	1958	druhý díl „Švejka“
+% Vynález zkázy	Karel Zeman	sci-fi	1958	podle literární předlohy Julese Verna
+% =====================================================================================================
+
+\section{Jan Roháč z~Dubé}
+%---------------
+Jan Roháč z~Dubé je první československý barevný film, natočený v~roce 1947 režisérem Vladimírem Borským. Děj filmu se odehrává po bitvě u~Lipan, kdy se zbytky husitských vojsk soustředily pod vedením Jana Roháče z~Dubé na hradě Sion. Pro novou distribuci v~60. letech byl film výrazně a nešetrně zkrácen (v~důsledku toho je film značně nepřehledný a zmatený).
+
+\section{Císařův pekař -- Pekařův císař}
+%----------------------------
+Císařův pekař – Pekařův císař je dvoudílná česká historická komedie režiséra Martina Friče, natočená v~roce 1951. Původně film natáčel jiný známý režisér Jiří Krejčík, po jeho neshodách s~Janem Werichem režii brzy převzal Martin Frič.
+
+Kromě dvoudílné verze byla z~jiných klapek vytvořena i exportní jednodílná verze v~délce 108 minut pod názvem Císařův pekař. V~této verzi chyběly nejvíce ideologicky zaměřené pasáže. Exportní využití filmu bylo také hlavním důvodem, proč byl film natáčen barevně.
+
+Hlavním hrdinou je pekař Matěj (Jan Werich) a císař Rudolf II. (opět Jan Werich), který je bohatým mecenášem pavěd všeho druhu, zvláště alchymie. Podaří se mu najít Golema, bájného hliněného obra, ale neumí jej oživit a stát se tak pánem světa. Pekař Matěj je pro svůj zdravý selský rozum, spravedlnost a dobrotu nejprve uvržen do vězení, pak ale uprchne a díky podobnosti s~císařem si s~ním vymění roli a nakonec využije Golema k~pečení rohlíků pro chudé.
+
+\section{Pyšná princezna}
+%--------------
+Pyšná princezna je česká filmová pohádka z~roku 1952 režiséra Bořivoje Zemana. První česko-slovenská filmová pohádka pro děti byla natočena podle jedné z~nejkrásnějších pohádek Boženy Němcové Potrestaná pýcha. Jde o~nejúspěšnější film v~historii československé kinematografie z~hlediska počtu diváků. V~kinech ho vidělo celkem 8 222 695 diváků.
+
+Pyšné princezně Krasomile (Alena Vránová) není za manžela dost dobrý hodný a spravedlivý král sousední země Miroslav (Vladimír Ráž). Ten se proto v~přestrojení za zahradníka vydá udělit princezně výchovnou lekci. Nejdříve pro ni vypěstuje zpívající květinu, která vydrží s~melodií do rána, jen když princezna nebude tak pyšná. Princezna se do zahradníka zamiluje, poté s~ním uprchne a cestou pozná život obyčejných lidí. Nakonec přestane být pyšná, a když zjistí, kdo zahradník ve skutečnosti je, už jejich sňatku nestojí nic v~cestě.
+
+\section{Afrika I: Z~Maroka na Kilimandžáro}
+%-----------------------------------
+Afrika I: Z~Maroka na Kilimandžáro je první celovečerní dokumentární film známé cestovatelské dvojice H+Z. Zachycuje, jak se oba cestovatelé připravovali na svou první cestu kolem světa a v~dokumentárních záběrech líčí jejich zážitky z~první poloviny cesty Afrikou. Přesvědčíte se, jaké překážky museli zdolávat na zpustošených cestách Habeše a v~jakém nebezpečí byl osud výpravy při odvážném průjezdu Núbijskou pouští. Film vrcholí výstupem na nejvyšší horu Afriky, vyhaslou sopku Kilimandžáro, jejíž temeno je po celý rok pokryto ledem. 
+
+Z~jejich první cesty vznikly ještě další celovečerní filmy. Bezprostředně navazuje film z~roku 1953 Afrika II: Od rovníku ke Stolové hoře, který dokumentuje zbytek cesty po Africe. Rovněž v~roce 1953 byl do kin uveden film Z~Argentiny do Mexika, který zachycuje většinu jejich cesty po Latinské Americe. Přestože je „Afrika“ dokumentární film, stal se druhým nejnavštěvovanějším filmem roku celkem (včetně všech hraných filmů).
+
+\section{Byl jednou jeden král…}
+%----------------------
+Byl jednou jeden král… je česká filmová pohádka z~roku 1955 režiséra Bořivoje Zemana. Film je zvukový a barevný. Jde o~situační komedii vystavěnou na základě děje z~klasické pohádky Sůl nad zlato. Děj jejího příběhu je zde vyprávěn dosti netradičně, neboť je obohacen o~doplňkové humorné situace. Hlavní roli krále hrál Jan Werich, sekundoval mu Vlasta Burian v~roli rádce (etc. druhého „Já“ – Atakdále) a jednalo se o~jejich první vzájemné setkání před filmovou kamerou. Pro Vlastu Buriana to byl třicátý sedmý film, první a poslední film barevný. Svoji první velkou filmovou roli si zde zahrála mladičká studentka gymnázia Milena Dvorská v~roli princezny Marušky, kterou jako tehdejší ryzí neherečku její výkon teprve přivedl na budoucí hereckou dráhu. Texty písní složil Jaroslav Seifert. Film byl natočen v~ateliérech, u~Třeboně a Jindřichova Hradce.
+
+V~království „Moje království“ vládne pyšný, hloupý a namyšlený král Já I., který má rádce Atakdále. Král je vdovec a má tři dcery: Drahomíru, Zpěvanku a nejmladší a nejchytřejší Marušku. Jelikož chce jít na odpočinek, chce jedné z~dcer svěřit vládu, a to té, která ho má ráda nejvíce. Když se dcer zeptá, jak ho mají rády, Drahomíra řekne, že ho má ráda jako zlato, a Zpěvanka jako zlato v~hrdle. Maruška nejdříve odvětí, že ho má ráda, jak jen dcera může mít otce ráda, na královo naléhání nakonec prohlásí, že ho má ráda jako sůl, protože jí je zapotřebí. To krále rozhněvá a Marušku vyžene. Vyhnaná princezna se dostane ke kouzelné babičce, která se jí ujme. Do paláce přijíždějí i tři princové, aby se ucházeli o~princezny. Král, aby všem a zejména Marušce dokázal, že sůl je jen nicotný nerost, nechá všechnu sůl z~celého království odnést na hrad a pak ji zničit. Jako jediná králi vzdoruje vdova Kubátová, která si sůl ponechá.
+
+Po neúspěšných pokusech vařit bez soli, z~království prchají jak dvořané, tak i princové, o~které ani druhé dvě princezny nejeví zájem. Cestou se princové zmocní královského pokladu, za který se král neúspěšně pokoušel od vdovy Kubátové koupit alespoň trochu soli. Princové nejprve společně odvážejí poklad z~království, ale jejich hamižnost je postaví navzájem proti sobě a poklad nakonec skončí v~bažinách. Do bažiny zapadne i král, který s~vidinou blížící se smrti zpytuje své svědomí a uvědomí si, že Marušku neoprávněně vyhnal a vládl špatně. Dostane se z~bažiny, a tak má šanci vše napravit. Když mu Maruška dá slánku se solí, kterou dostala od kouzelné babičky, má král hlavní starost, aby bylo soli dost pro všechny lidi v~království. Čarovná slánka je však bezedná, a proto je dost soli pro všechny. Maruška si vezme za manžela rybáře, kterého potkala při svém vyhnání, Drahomíra zahradníka a Zpěvanka dudáka. Král se ožení s~vdovou Kubátovou a na odpočinek zatím neodchází. Mezi povinnosti rádce Atakdále se dostává i péče o~malé děti královské rodiny.
+
+\section{Hrátky s~čertem}
+%---------------
+Hrátky s~čertem  je původně pohádková divadelní hra z~roku 1946, kterou napsal český spisovatel Jan Drda za nacistické okupace v~roce 1942 za heydrichiády. Dílo se dočkalo především poválečného úspěchu, a to nejenom proto, že jsou v~něm patrné náznaky odporu proti nacismu.
+
+V~roce 1954 byla hra upravena i do podoby rozhlasové hry, ve které se objevila řada známých herců z~tehdejšího souboru Národního divadla, z~nichž někteří si zahráli o~dva roky později i ve filmové podobě tohoto díla (Stanislav Neumann, František Filipovský, Jaroslav Vojta, František Smolík).
+
+Roku 1956 byla tato pohádka zfilmována režisérem Josefem Machem za použití kreslených filmových dekorací Josefa Lady. Ve filmu se objevila celá řada vynikajících herců: Josef Bek (Martin Kabát), Eva Klepáčová (Káča), Jaroslav Vojta (loupežník Sarka Farka), František Filipovský (zapomenutý čert Karborund), František Smolík (poustevník Školastykus), Josef Vinklář (čert Lucius), Alena Vránová (princezna Dišperanda), Stanislav Neumann (zapomenutý čert Omnimor), Vladimír Ráž (čert dr. Solfernus), Bohuš Záhorský (král), Ladislav Pešek (Lucifer), Rudolf Deyl ml. (Belial), Antonín Šůra (Boží anděl Teofil).
+
+Hlavní postavou je vysloužilý voják, prostý člověk Martin Kabát, dále zde vystupují např. poustevník, loupežník a několik čertů.  Martina Kabáta trápí že se neumí bát. Proto jde přenocovat do starého pustého mlýna, aby zjistil, zdali tam opravdu straší a jestli on sám pozná, co je to strach. Čertu se ale chtěla upsat vlastní krví princezna Dišperanda spolu se svou kamarádkou služebnou Káčou tak, aby měly konečně ženicha, po kterém obě dvě touží. Čert ale odnese Káču do pekla a Martin Kabát ji jde z~pekla vysvobodit, což se mu za pomoci božího anděla Theofila nakonec povede. Martin Kabát zůstane s~Káčou hospodařit v~opuštěném mlýně. Potrestán je i neskromný poustevník a místní loupežník Sarka Farka. Na princeznu zbude už jen čert. Příběh vytváří jakýsi nový typ české báchorky s~vtipnými glosami. Přes všechna dobová klišé toto půvabné dílo zůstalo dodnes velmi milé a svěží.
+
+\section{Dobrý voják Švejk}
+%-----------------
+Dobrý voják Švejk je československá protiválečná filmová komedie, kterou roku 1956 natočil režisér Karel Steklý. Byla natočená podle slavného románu Osudy dobrého vojáka Švejka spisovatele Jaroslava Haška a byla nominovaná roku 1957 na Křišťálový glóbus. Film pokračuje snímkem Poslušně hlásím. Existuje též stejnojmenný animovaný film Jiřího Trnky z~roku 1954.
+
+Kinematografií se už od dob němého filmu táhne pestrá nit pokusů o~více či měně věrné adaptace tohoto Haškova slavného románu. Mezi nejznámější patří bezesporu Lamačův film z~roku 1926 s~Karlem Nollem v~roli Švejka, Fričova adaptace se Sašou Rašilovem, natočená na počátku třicátých let či zdařilá animovaná verze Jiřího Trnky. Dvoudílnou a dodnes neznámější adaptaci natočil režisér Karel Steklý. 
+
+Její první část (Dobrý voják Švejk) zpracovává první díl románu a vy se tedy můžete setkat Josefem Švejkem, pražským obchodníkem se psy a sledovat jeho osudy od chvíle, kdy je po sarajevském atentátu zatčen, vyšetřován a po čase přes diagnózu notorického blba povolán do armády. Dostává se do vězení, odkud je vyreklamován feldkurátem Katzem, jako jeho osobní sluha a když ten jej po čase prohraje v~kartách, stává se neštěstím nadporučíka Lukáše.
+
+\section{Poslušně hlásím}
+%---------------
+Poslušně hlásím je československá filmová komedie z~roku 1958 v~režii Karla Steklého. Jde o~pokračování filmu Dobrý voják Švejk z~roku 1956, oba díly byly natočeny na základě románu Osudy dobrého vojáka Švejka spisovatele Jaroslava Haška.
+
+Se svéráznou typicky českou postavičkou vojáka Švejka se tentokrát setkáte na cestě na frontu a nakonec přímo v~bojové linii. Můžete se podívat na jeho slavné vlakové příhody a také zřejmě nejslavnější epizodu románu, Švejkovu budějovickou anabázi. Nechybí scéna s~tajně koupeným koňakem, epizoda se Švejkem coby falešným ruským zajatcem, včetně soudu, ani scéna, v~níž je poručík Dub přistižen v~bordelu. Přestože kritika nenechala po uvedení do kin, na filmu nit suchou, je dnes Steklého dvoudílné adaptace bezpochyby tou nejslavnější a nezapomenutelnou.
+
+\section{Vynález zkázy}
+%----------------------------
+Vynález zkázy je československý vědeckofantastický film, který roku 1958 natočil režisér Karel Zeman podle stejnojmenného románu francouzského spisovatele Julese Verna.
+
+Film byl realizován originálním způsobem. Výtvarná složka vycházela z~původních ilustrací: rytin k~Vernovým románům od dvojice francouzských malířů Édouarda Rioua a Léona Benetta. Záměrně naivizující triky byly inspirovány postupy francouzských snímků Georgese Mélièse z~počátku 20. století. Půvab tohoto filmu, který se řadí mezi vysoce ceněnou světovou klasiku, podtrhl i poetický scénář básníka Františka Hrubína a hudba známého filmového skladatele Zdeňka Lišky.
+
+
+\chapter{Vybrané filmy z~60. let}
+
+
+\begin{table}[h]
+\centering
+\begin{adjustwidth}{-1cm}{-1cm}  % extends 1cm on left and right
+\caption{Vybrané filmy z~období 1945--1960}
+\small
+\begin{tabular}{|p{4.5cm}|p{3cm}|p{2.5cm}|c|p{3.5cm}|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} & \textbf{Poznámka} \\
+\hline
+Jan Roháč z~Dubé & Vladimír Borský & drama, historický & 1947 & první čs. barevný film \\
+\hline
+Císařův pekař -- Pekařův císař & Martin Frič & historická komedie & 1951 & dvojdílný film \\
+\hline
+Pyšná princezna & Bořivoj Zeman & pohádka & 1952 & \\
+\hline
+Afrika I: Z~Maroka na Kilimandžáro & Hanzelka, Zikmund, Novotný & dokumentární & 1952 & navazuje Afrika II \\
+\hline
+Byl jednou jeden král & Bořivoj Zeman & pohádka & 1955 & první film Werich + Burian \\
+\hline
+Hrátky s~čertem & Josef Mach & pohádka & 1956 & \\
+\hline
+Dobrý voják Švejk & Karel Steklý & komedie & 1956 & \\
+\hline
+Poslušně hlásím & Karel Steklý & komedie & 1958 & druhý díl „Švejka" \\
+\hline
+Vynález zkázy & Karel Zeman & sci-fi & 1958 & podle J. Verna \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+%========================
+Po velkém úspěch Československa na Expo 58 dochází ve společnosti k~postupnému uvolňování, takže v~60. letech vzniká celá řada filmů, které jsou ceněny dodnes. Za zvláštní zmínku stojí tzv. Československá nová vlna, což je pojem používaný pro generaci československých filmových scenáristů a režisérů začínajících tvořit v~60. letech 20. století a jejich díla z~té doby. Patří sem zejména Miloš Forman, Věra Chytilová, Ivan Passer, Jaroslav Papoušek, Antonín Máša, Pavel Juráček, Jiří Menzel, Jan Němec, Jaromil Jireš, Evald Schorm, Vojtěch Jasný, Jan Schmidt, Juraj Herz, Juraj Jakubisko, Štefan Uher, Dušan Hanák, Ján Kadár, Elo Havetta a další.
+
+Charakteristickým znakem filmů tohoto hnutí byly dlouhé, často improvizované dialogy, černý až absurdní humor a obsazování neherců. Filmy se často věnují tématům jako milostné poblouznění mladých lidí či pokřivené morálky. Zachycují přirozenou lidskost, lidé mají dobré i špatné vlastnosti. Režiséři se nesnaží nic přikrášlovat a filmy obsahují nenaaranžované (i zdánlivě nenaaranžované) scény. Za první dílo československé nové vlny bývá označován film Slnko v~sieti slovenského režiséra Štefana Uhera z~roku 1962
+
+Filmy československé nové vlny pokryly řadu rozdílných žánrů. Největší divácký ohlas měly v~době uvedení  hořké komedie: film Hoří, má panenko i Ostře sledované vlaky vidělo v~kinech přes milion diváků.
+
+V~českém i slovenském filmu se s~novou vlnou poprvé ve větší míře objevují podobenství, ať už zasazená do současnosti (Návrat ztraceného syna), do minulosti (Spalovač mrtvol) či zcela mimo reálný časoprostor (O~slavnosti a hostech, Den sedmý, osmá noc).
+
+Významnou součástí hnutí se staly i dokumenty inspirované cinema verité, jako byly Strop či Pytel blech Věry Chytilové. Tvůrci byl nově zpracován také  žánr válečného filmu. Hrdinové i záporné postavy přestávali být jasně vyhranění, to se týká například snímku Kočár do Vídně; zároveň byly v~tomto žánru uplatňovány postupy uměleckého filmu, jako je rozbourání času a prostoru v~„pocitovém“ filmu Démanty noci. Silný emoční i symbolický náboj obsahuje i protiválečný snímek režiséra Karla Zemana Bláznova kronika z~roku 1964, tematicky spadající do doby třicetileté války.
+
+V~roce 1964 přišel do kin první český filmový muzikál režiséra Ladislava Rychmana Starci na chmelu. O~rok později ho následoval Roháčův a Svitáčkův snímek Kdyby tisíc klarinetů. V~té době vznikla i další vynikající česká filmová hudební komedie režiséra Oldřicha Lipského a scenáristy Jiřího Brdečky Limonádový Joe aneb Koňská opera.
+
+Hnutí skončilo nástupem normalizace počátkem 70. let. Miloš Forman, Jan Němec, Vojtěch Jasný a Ivan Passer opustili zemi. Ostatní, kteří zůstali, čelili masivní cenzuře nebo se přizpůsobili. Část filmů z~60. let byla zakázána a obnovené či úplné premiéry se dočkala až po změně režimu v~roce 1989; byli to například Menzelovi Skřivánci na niti nebo Kachyňovo Ucho (tzv. trezorové filmy).
+
+\section{Limonádový Joe aneb Koňská opera}
+%----------------------------
+Limonádový Joe aneb Koňská opera je československá filmová hudební komedie resp. osobitá parodie westernu na motivy knihy Jiřího Brdečky, kterou natočil režisér Oldřich Lipský v~roce 1964. Hlavní hrdina filmu – pistolník popíjející zásadně jen Kolalokovu limonádu (Karel Fiala) – potírá zlo na Divokém západě, především pak pistolníky popíjející whisky. Protihráčem je mu gangster hledaný ve čtyřech státech (Miloš Kopecký), neštítící se ani těch nejhanebnějších zločinů, zvláště pak na nevinných dívkách. Jméno hlavního hrdiny se vyslovuje česky, tj. [joe], nikoliv anglicky [džou], jak se v~daném kontextu nabízí.
+
+Příběh nás zavádí na Divoký západ do arizonského Stetson City roku 1885. Toto město žije typickým životem osady, jež vyrostla na železnici a penězích z~ní plynoucích. Schází se zde pestrá společnost kovbojů, honáků dobytka, dobytkářů, dobrodruhů i podnikavců. Ti všichni se scházejí ve vyhlášeném podniku nazývaném Trigger-Whiskey-Saloon. Jeho majítelem je Doug Badman (Rudolf Deyl mladší), podnikavý a – podle svých vlastních slov odporně bohatý muž. Je to člověk alespoň do jisté omezené míry na úrovni a jeho ctižádostí je udržovat svému podniku pověst kulturního stánku. Proto si též vydržuje hvězdu, zpěvačku Tornádo Lou (Tornádo žena, Tornádo lvice, Arizonská pěnice Květa Fialová). Ta má na přítomné muže včetně Douga magický vliv, je předmětem jejich touhy. Ona sama je však podobnými typy mužů přesycena, hledá muže svých snů, „muže, který ji učiní jinou, lepší“ („já stále sním, kdy přijde on, mého srdce šampión“).
+
+\section{Starci na chmelu}
+%----------------
+Starci na chmelu je první a patrně i vůbec nejznámější český filmový muzikál, natočený režisérem Ladislavem Rychmanem v~roce 1964 podle námětu a scénáře Vratislava Blažka (který byl i autorem písňových textů) s~Vladimírem Pucholtem, Ivanou Pavlovou a Milošem Zavadilem v~hlavní roli. Příběh vypráví o~první lásce dvou studentů na chmelové brigádě. Film se stal brzy velmi populárním a písničky autorů Jiřího Bažanta, Vlastimila Hály a Jiřího Maláska téměř zlidověly. Ve filmu v~drobných rolích studentů vystupuje velké množství herců a tanečníků, povětšinou tehdejších studentů konzervatoří a pražské DAMU, kteří zde vystupují nejen v~roli komparsu, ale především tancují -- choregrafii všech tanečních čísel zde vytvořil Josef Koníček.
+
+Celým filmem v~roli symbolických průvodců, tří kytaristů v~černém vystupují Josef Laufer, Petr Musil a choreograf Josef Koníček. Tito tři muži s~kytarami v~černém se také stali jakýmsi logem i symbolem tohoto snímku. Tito tři průvodci také playbackem zpívají ústřední melodii celého filmu, kterou se stala píseň Milenci v~texaskách. Od roku 2001 existuje i divadelní verze tohoto muzikálu.
+ 
+\section{Obchod na korze}
+%---------------
+Obchod na korze je československý film režisérů Jána Kadára a Elmara Klose, natočený v~roce 1965 na motivy novely spisovatele Ladislava Grosmana. Tento film jako první československý snímek získal Oscara za nejlepší cizojazyčný film (1966). Polská herečka Ida Kamińska byla o~rok později nominována na Oscara za nejlepší ženský herecký výkon v~hlavní roli (cenu nakonec získala Elizabeth Taylorová za roli Marthy v~Kdo se bojí Virginie Woolfové?).
+
+Snímek se dočkal zdigitalizované verze; světová premiéra se konala na karlovarském festivalu v~létě 2017. Při té příležitosti přítomný potomek režiséra Klose vyjádřil radost a současně poukázal na znepokojivou podporu ultrapravicové strany Naše Slovensko ze strany mladých lidí. Těm by, jak doufá Elmar Klos ml., Obchod na korze mohl pomoci otevřít oči.
+
+Děj filmu vypovídá o~životě v~Slovenském štátu během druhé světové války, kdy se obyčejný život pod vládou slovenských klerofašistů měnil a mj. probíhala arizace židovského majetku. Hlavní hrdina filmu – drobný živnostník Tóno Brtko (hrál jej Jozef Kroner), žijící v~malém městečku (Sabinov), dostane dekret na obchod staré židovky Rozalie Lautmannové (hrála ji Ida Kamińska). Tento její obchod byl však v~podstatě prázdný, stará paní přežívá díky příspěvkům od židovské obce a Tóno díky své hodné povaze jí není schopen vysvětlit, proč vlastně do obchodu přišel…
+
+\section{Kdyby tisíc klarinetů}
+%---------------------
+Kdyby tisíc klarinetů je československý celovečerní filmový muzikál z~roku 1964. Předchůdcem snímku byla stejnojmenná divadelní hra, kterou v~roce 1958 napsali Jiří Suchý a Ivan Vyskočil.
+
+Ve filmu figurují především mladí zpěváci a hudebníci té doby, spjatí zejména s~divadly Semafor a Rokoko. V~civilních rolích vystupují např. Karel Gott, Eva Pilarová, Hana Hegerová, Pavlína Filipovská, Jana Malknechtová atd., v~rolích vojáků vystupují např. Waldemar Matuška, Jiří Suchý, Jiří Šlitr, Jiří Jelínek atd.
+
+Ve filmu účinkuje také dívčí pěvecký sbor, ve kterém se objevila řada začínajících hereček a zpěvaček, pocházejících z~experimentálních divadelních souborů nebo ze souborů divadel malých forem (jako bylo Divadlo Semafor, Divadlo Paravan či Laterna magika) – epizodní role zde ztvárnily např. Naďa Urbánková, Consuela Morávková, Jitka Zelenohorská, Lilka Ročáková, Milena Zahrynowská, Věra Nerušilová, Sylvie Daníčková, Evelyna Steimarová, Klára Jerneková, Zuzana Martínková.
+
+V~mužském tanečním souboru zde tančili například Pavel Šmok, Josef Kaftan a Jaroslav Čejka. Tančil zde baletní soubor Hudebního divadla v~Karlíně a dále také taneční soubor z~varieté Alhambra.
+
+Lázeňské městečko Alkalis slaví dvě stě let od průjezdu skladatele J. S. Bacha. Z~místní vojenské posádky ten den zběhne voják Schulze poté, co se mu znechutí dril podporučíka Maxe. Při následném zátahu se mystickým Bachovým zásahem všechny zbraně vojáků změní na hudební nástroje – nejenom u~rojnice stíhacího oddílu, ale u~celé posádky. Soukromá televizní společnosti TelVis tedy namísto reportáže z~odhalení pomníku vysílá z~kasáren nejprve přímý přenos narychlo uspořádanou hudební estrádu, kde vystupují známí zpěváci a zpěvačky té doby.
+
+\section{Lásky jedné plavovlásky}
+%-----------------------
+Lásky jedné plavovlásky je český černobílý film režiséra Miloše Formana z~roku 1965. Film byl nominován na Oscara za nejlepší cizojazyčný film a Zlatý glóbus za nejlepší cizojazyčný film. Britský filmový časopis Empire ho v~roce 2010 zařadil mezi 100 nejlepších cizojazyčných filmů.
+
+Hlavní hrdinkou filmu je mladá dělnice z~malého města (Hana Brejchová), která hledá pravou lásku. Jednou ji na místní zábavě zaujal mladý muzikant (Vladimír Pucholt), se kterým ještě téže noci skončila v~posteli. Později za ním přijela do Prahy a ubytovala se u~jeho překvapených rodičů. Její milý o~ni však už nejevil zájem. Příběh se odehrává ve městě Zruč nad Sázavou.
+
+\section{Ostře sledované vlaky}
+%----------------------------
+Ostře sledované vlaky je československý film natočený režisérem Jiřím Menzelem v~roce 1966 podle stejnojmenné novely Bohumila Hrabala. Příběh se odehrává v~období protektorátu. Předlohou se stala skutečná událost a to výbuch německého muničního vlaku, odpáleného časovým spínačem podskupinou partyzánské skupiny Podřipsko z~Lysé nad Labem 2. března 1945 nedaleko železniční stanice Stratov a zážitky Bohumila Hrabala z~nádraží v~Kostomlatech nad Labem, kde na konci války zastával funkci výpravčího. Hlavní postavy – přednosta Němeček, výpravčí Hubička... jsou původně ze stanice Dobrovice. 
+
+Jde o~jeden z~prvních filmů, který Jiří Menzel režíroval a v~roce 1968 získal film Cenu Americké akademie filmových umění a věd – Oscara za nejlepší cizojazyčný film. Film byl digitálně zrestaurován za podpory Nadace české bijáky. Uveden byl v~roce 2014 na MFF v~Karlových Varech.
+
+Film byl natočen v~železniční stanici Loděnice u~Berouna na vedlejší železniční trati z~Prahy do Berouna přes Rudnou u~Prahy. Režisér filmu Jiří Menzel si zde také zahrál malou epizodní roli lékaře. U~příležitosti 50. výročí natočení filmu se v~Loděnici sešli jeho tvůrci a na výpravní budově byla odhalena pamětní deska připomínající natáčení.
+
+Nevinný mladíček Miloš Hrma (Václav Neckář) se zaučuje coby novopečený železničář na malé železniční stanici a zároveň prožívá nelehké období svého dospívání, to vše v~kontextu konce druhé světové války. Po neúspěšném pokusu o~sebevraždu kvůli milostným neúspěchům se však zaučí jak pro práci ve stanici, tak v~intimním vztahu k~ženě (Naďa Urbánková). Nakonec se zachová jako hrdina, když se rozhodne vyhodit do vzduchu muniční vlak. Při této amatérské diverzní akci však zahyne.
+
+\section{Fantom Morrisvillu}
+%------------------
+Fantom Morrisvillu je český film z~roku 1966 natočený režisérem Bořivojem Zemanem,  Oldřich Nový zde má dvojroli a Waldemar Matuška další hlavní roli. Jedná se o~filmovou parodii na sešitovou brakovou literaturu. Nevytížený hráč na bicí nástroje v~divadelním orchestru si během divadelního operního představení Carmen krátí chvíle čekání na svůj part četbou tajemného detektivního příběhu, který pak sám ve své fantazii během divadelního představení prožívá, nedává pozor a hru orchestru touto četbou kazí. 
+
+Samotný detektivní příběh pak probíhá v~tajemném staroanglickém zámku (exteriéry byly natočeny v~prostorách Místodržitelského letohrádku v~Praze), jenž je protkán tajnými chodbami a v~němž žije žárlivý zámecký pán, anglický lord, člen britské horní sněmovny.
+
+\section{Kočár do Vídně}
+%--------------
+Kočár do Vídně je český film, natočený roku 1966 režisérem Karlem Kachyňou. Scénář napsal společně s~Janem Procházkou podle stejnojmenné knižní předlohy. Děj se odehrává na jižní Moravě, těsně před koncem 2. světové války, v~roce 1945. Hlavní hrdince Kristě oběsili Němci kvůli malému přestupku těžce pracujícího manžela. Nenávidí německé vojáky i celou válku. 
+
+Dva rakouští zběhové donutí Kristu, aby je odvezla na svém žebřiňáku do Rakouska. Krista je záměrně vede špatným směrem. Cestou si plánuje vraždu, postupně zbavuje vojáky zbraní, chová se k~nim nepříjemně a lhostejně a čeká na vhodnou příležitost. V~jednu chvíli se prozradí, zběhové ji zaženou do lesa a ujedou s~povozem. Když je Krista dožene, je starší voják následkem zranění mrtvý a mladší mu kope hrob. Krista má konečně šanci nenáviděného „Němce“ zabít, ale nenachází dostatek sil. Ve své bolesti a osamění se oba truchlivci sblíží a vyčerpáni si usnou v~objetí. Ráno je nachází partyzáni a oba čeká nemilý osud. Nakonec je jedno, kdo je na jaké straně, krutost je všem společná.
+
+\section{Romance pro křídlovku}
+%---------------------
+Romance pro křídlovku je český hořký poeticko-romantický film režiséra Otakara Vávry z~roku 1966 natočený na námět stejnojmenné básně Františka Hrubína, který byl u~tohoto snímku i spoluautorem scénáře. V~hlavních rolích zde vystupuje tehdy mladičký herec Jaromír Hanzlík a slovenská herečka Zuzana Cigánová, nezapomenutelný herecký výkon zde předvedla také Miriam Kantorková. V~širším kontextu československé kinematografie se jedná o~poměrně vzácnou ukázku unikátního filmového díla, které je pokusem o~vizuální přepis většího básnického díla (filmová báseň) spadajícího do oblasti klasické české literatury 20. století. Téměř celý děj filmu se odehrává v~okolí Lešan na dolní Sázavě, kde František Hrubín prožil své mládí.
+
+Děj: smutný poetický příběh o~setkání mladého člověka studenta Vojty (Jaromír Hanzlík) jak s~první velkou láskou Terinou (Zuzana Cigánová) i se smrtí (Vojtův dědeček).
+
+\section{Marketa Lazarová}
+%----------------
+Marketa Lazarová je český film natočený režisérem Františkem Vláčilem v~roce 1967 podle stejnojmenné knihy Vladislava Vančury. Film vypráví o~období středověku na statku loupeživého zemana. Život v~té době byl krutý, lidé se museli hodně snažit, aby se uživili, případně ubránili vojsku českého krále.
+
+Vláčil a jeho scenárista Pavlíček připravovali zhruba tři roky. Režisér detailně rozkresloval scény a dopodrobna studoval středověkou dobu a její reálie, aby mohl nabídnout její co nejvěrnější průřez. Původně plánoval do filmu zahrnout i scény z~královského dvora a jeho okolí, ty však nakonec nebyly realizovány – jak z~finančních důvodů (Marketa Lazarová byla nejdražším československým filmem 60. let), tak i kvůli beztak značné časové délce filmu (která se blíží třem hodinám). Přesto dokázal Vláčil ve filmu brilantně prolnout lyrickou a epickou složku, nevinnost a lásku i vypočítavost a utrpení. Stejně tak postihl zemitost pohanství oproti odpoutanosti dematerializovaného křesťanství, podobně jako kontrast mezi vrchností a poddanými tehdejších časů.
+
+Roku 1998 byl film v~anketě filmových kritiků a publicistů vyhlášen nejvýznamnějším filmem stoleté historie české kinematografie. Kritikou je vysoce hodnocen hned po několika stránkách: coby vrchol československého historického filmu, poetického filmu a samotného umění adaptace z~literární předlohy.
+
+\section{Hoří, má panenko}
+%----------------
+Autorem námětu a scénáře je známá a osvědčená trojka Miloš Forman, Jaroslav Papoušek a Ivan Passer. Modelový průzkum českého maloměšťáctví ve vypouklém zrcadle zvýrazňujícím hospodské vztahy, prázdné hlavy, dlouhé prsty a plytké svědomí, se odehrává na pozadí hasičského bálu. V~karikování a pranýřování české národní povahy jsou režisér Forman a kameraman Miroslav Ondříček doslova nelítostní. Komedie se brzy mění v~tragickou frašku s~citem pro detail, gesto a dialog. V~zobrazení požárnického plesu se spojují groteskní gagy s~nekompromisním odhalením lidské přízemnosti a tuposti. Mravní stav společnosti se tu zrcadlí především v~postavách starých lidí, obětí organizačních zmatků, živelných katastrof a hlouposti svých bližních, kteří svoji nekulturnost a nesvobodu považují za normální.
+
+První Formanův barevný film byl opět obsazen neherci známými z~předcházejících filmů (za všechny jmenujme Jana Vostrčila v~roli předsedy plesového výboru a Miladu Ježkovou jako ženu hlídající tombolu). Upocenou atmosféru vesnické tancovačky podtrhují dechovkové coververze soudobých beatových hitů, např. Hvězdy na vrbě či From Me To You od Beatles. Hovorová řeč představuje katalog komunikačních defektů, zvlášť když se postavy snaží být oficiální. Pamflet o~společnosti, ve které přestávají fungovat kamufláže, ale není si schopná přiznat pravý stav věcí, se tehdy stal synonymem společensky podvratného filmového cynismu:  proti filmu například zcela oficiálně protestovali čeští hasiči. Italský koproducent snímku Carlo Ponti se dokonce díla zřekl a žádal zpět vložený kapitál. Finanční trn z~režisérovy paty nakonec vytrhl francouzský producent Claude Berri, který uhradil chybějící částku. Ponti ale udělal chybu, neboť film byl nakonec nominován na Oscara v~kategorii cizojazyčný film.
+
+Text k~písni „Hoří!“, jejíž refrén dal jméno filmu, napsal Fanda Mrázek, ale zde je skladba uvedena pouze v~orchestrální podobě. Mimopražská premiéra se uskutečnila ve Vrchlabí v~říjnu roku 1967.
+
+\section{Údolí včel}
+%----------
+Údolí včel je český film režiséra Františka Vláčila natočený v~roce 1967 podle námětu spisovatele Vladimíra Körnera. Scénář byl vydán v~románové podobě v~roce 1978. Film se natáčel především v~Kuklově a okolí na kraji Blanského lesa. Tvrz Vlkov vznikla z~místního nedostavěného kláštera.
+
+Děj se odehrává ve 13. století a jeho hlavním hrdinou je syn pán z~Vlkova, Ondřej z~Vlkova (Petr Čepek). Příběh začíná, když si jeho otec bere mladou nevěstu, Ondřejovu nevlastní matku (Věra Galatíková). Ondřej jí vyděsí a urazí nevhodným dárkem a otec jej za to ztrestá a zraní tak, že není jisté, zdali přežije. V~ten okamžik se pomodlí k~panně Marii a dá slib, že jí ho zaslíbí (v~přeneseném smyslu tak, že jej pošle k~náboženskému řádu), pokud jej nechá žít. Tak se stane a Ondřej putuje do řádu německých rytířů na pobřeží Baltského moře, kde složí slib věrnosti. Záhy se sbližuje s~Arminem von Heide (Jan Kačer), jednoho z~rytířů řádu, který se v~minulosti účastnil výpravy do Jeruzaléma a který zarputile (možná až fanaticky) věří a dychtí po dosažení nejvyšší zbožnosti, mravní čistoty a sebeobětování.
+
+\section{Konec agenta W4C prostřednictvím psa pana Foustky}
+%-------------------------------------------------
+Konec agenta W4C prostřednictvím psa pana Foustky je česká filmová komedie, parodující filmy o~Jamesi Bondovi. Natočil ji Václav Vorlíček na námět Oldřicha Daňka v~roce 1967. Komedie byla úspěšná. Podle režiséra utržila za první rok 7 miliónů Kčs jen v~ČSSR při rozpočtu 3,5 miliónu Kčs. Byla také prodána do řady zemí.
+
+Dokonalý tajný agent Cyril Juan Borguette (Jan Kačer), pracující pod kódem W4C, je vyslán do Prahy, aby získal slánku, v~níž jsou ukryty mikrofilmy s~plány na vojenské využití Venuše. Před cestou je vybaven hi-tech multifunkční rekvizitou - pod pláštěm obyčejného budíku je skryt revolver, dýka, granát, slzotvorný plyn, rušička mikrofonů, Geigerův-Müllerův počítač a dokonce i malá jaderná bomba.
+
+Po Juanově příjezdu do Prahy se rozpoutává boj tajných agentů o~slánku. Do všeobecného zmatku je vyslán jako agent i účetní Foustka (Jiří Sovák). Ten se díky své neobratnosti dostane do centra dění a přežije vzájemné vybíjení agentů. Přitom mimochodem zasahuje do bojů a dostane se na dosah hledané slánce. Nakonec díky svému psíkovi slánku získá a omylem zničí agenta W4C jeho vlastní bombou.
+
+Zajímavost: nápad s~budíkem-bombou, se později vyskytl také v~„pravé“ bondovce Povolení zabíjet, kde ho dává Bondovi jeho zbrojíř Q jako součást rozsáhlého speciálního vybavení.
+
+\section{Rozmarné léto}
+%--------------
+Rozmarné léto je český film režiséra Jiřího Menzela z~roku 1968 podle stejnojmenné knihy Vladislava Vančury. Film je barevný a byl vyroben ve Filmovém studiu Barrandov v~roce 1967.
+
+Film inspiroval Igora Bauersimu k~jeho divadelní hře Launischer Sommer, kterou inscenoval v~roce 2001 v~düsseldorfském divadle Düsseldorfer Schauspielhaus. Snímek vyhrál hlavní soutěž Mezinárodního filmového festivalu Karlovy Vary 1968, kde získal Křišťálový glóbus.
+
+Jedno deštivé letní odpoledne se na prázdné staré plovárně malého města sejdou major Hugo (Vlastimil Brodský), abbé Roch (František Řehák) a majitel těchto říčních lázní Antonín Důra (Rudolf Hrušínský). Pánové probírají vznešeným, vzdělaným jazykem naprosté životní nicotnosti, když tu je jejich nečinné klábosení přerušeno a oni vytrženi z~letargie příjezdem pouťových komediantů, kouzelníka Arnoštka (Jiří Menzel) a jeho společnice Anny (Jana Preissová). Každý z~pánů se svým způsobem snaží s~krásnou slečnou rozptýlit.
+
+Z~úst Antonína Důry pochází proslulý výrok: „Tento způsob léta zdá se mi poněkud nešťastným.“, který zazní na začátku i na konci filmu
+
+\section{Skřivánci na niti}
+%----------------------------
+Skřivánci na niti je český hořce poetický film režiséra Jiřího Menzela z~roku 1969 natočený podle knihy Bohumila Hrabala Inzerát na dům, ve kterém už nechci bydlet. Film vypráví o~partě dělníků a skupině vězeňkyň (tzv. kopečkářek) pracujících v~dusné atmosféře 50. let 20. století na kladenském šrotišti u~zdejších železáren a oceláren. Každý z~nich má nějaký svůj životní příběh, během něhož se nedobrovolně dostal k~této práci (bývalý živnostník „Mlíkař“, prokurátor, saxofonista, vězeňkyně, profesor, kuchař ap.). Hlavní dějovou osu tvoří milostný příběh mladé vězeňkyně a mladého dělníka (Václav Neckář a Jitka Zelenohorská).
+
+Film byl vyroben v~ČSSR, Filmové studio Barrandov v~roce 1969 a ihned po jeho neveřejné premiéře byl pro svoji otevřenou kritiku tehdejšího vládnoucího totalitního režimu na více než 20 let zakázán. Jeho faktická veřejná premiéra proběhla teprve až po společenských změnách, které nastaly v~roce 1989.
+
+
+\section{Vybrané filmy ze 70. let}
+%================================
+Po celkovém uvolnění v~60. letech a vzniku tzv. československé nové vlny, kdy vznikla řada filmů oceňovaných i v~zahraničí, byla filmová tvorba v~první polovině 70. let silně poznamenaná tzv. normalizací. Obdobně jako v~50. letech vznikla řada filmů poplatných době. Zajímavé filmy můžeme najít hlavně v~žánru komedie.
+
+\section{Šest medvědů s~Cibulkou}
+Šest medvědů s~Cibulkou je česká filmová situační komedie z~roku 1972 režiséra Oldřicha Lipského s~Lubomírem Lipským v~hlavní roli (dvojroli). Cirkusový klaun Cibulka (Lubomír Lipský) dostane výpověď od ředitele cirkusu (Jan Libíček), neboť ten se rozhodl vyměnit své cvičené medvědy za cvičené čuníky ředitele konkurenčního cirkusu (Miloš Kopecký). Cibulka si musí hledat nové zaměstnání. Děti, které rády chodí do cirkusu, to zařídí tak, že Cibulka nastoupí v~ženském přestrojení do jejich základní školy jako nová školní kuchařka. Kromě práce kuchařky však Cibulka musí zvládnout i práci školníka (rovněž Lubomír Lipský) a uklízečky (Darja Hajská). Při práci mu pomáhá i jeho cvičený šimpanz. 
+
+Medvědi novému majiteli utečou ze železničního vagónu a pomocí jízdních kol a motocyklů se dostanou do školy k~Cibulkovi. Situaci ve škole navíc zkomplikuje návštěva školního inspektora (František Filipovský), která ztrpčuje život řediteli školy (Jiří Sovák). Vzniká velký propletec mnoha záměn, omylů a dalších komických situací, celá škola se na několik hodin změní na malý cirkus. Nakonec se ale vše vysvětlí a dobře dopadne, Cibulka i medvědi se vrátí zpět do svého cirkusu k~velké radosti všech dětí i dospělých.
+
+\section{Tři oříšky pro Popelku}
+Tři oříšky pro Popelku (německy Drei Haselnüsse für Aschenbrödel) je česko-německá filmová pohádka z~roku 1973 režiséra Václava Vorlíčka. Scénář napsal podle předlohy Boženy Němcové František Pavlíček, v~titulcích je však uvedena Bohumila Zelenková, která jej zaštítila, protože Pavlíčkovi komunisté zakázali činnost v~kultuře. Hudbu složil Karel Svoboda, hlavní píseň Kdepak ty ptáčku hnízdo máš zpívá Karel Gott a text napsal Jiří Štaidl. Kostýmy vytvořila výtvarná dílna Theodora Pištěka, za německou stranu se o~kostýmní výpravu staral Günter Schmidt.
+
+V~hlavních rolích se představili Libuše Šafránková jako Popelka a Pavel Trávníček jako princ, kterého daboval Petr Svojtka. Natáčelo se na Klatovsku, v~lesích kolem Javorné u~Čachrova, u~vodního hradu Švihov, v~barrandovském studiu a ve východním Německu (ve Studiu Babelsberg a u~zámku Moritzburg).
+
+V~roce 2000 byl film zvolen nejoblíbenější pohádkou století. Film je velmi oblíbený také v~Německu (zde ho každoročně uvádí všechny hlavní televizní stanice), Norsku (každoročně sleduje až pětina obyvatel) a v~dalších zemích. Na zámku Moritzburg se od roku 2009 nachází velká expozice kostýmů a dalších rekvizit z~filmu, za rok ji navštíví přes 150 000 návštěvníků. V~listopadu 2013 se zde konaly oslavy 40. výročí premiéry filmu. V~témže roce byla výstava Po stopách Popelky též na vodním hradě Švihov.
+
+Děj se v~zásadě odehrává podle klasického schématu pohádky o~Popelce, která doma musí snášet ústrky macechy a nevlastní sestry, v~kouzelných oříšcích dostane plesové šaty, ve kterých na plese okouzlí prince. Při útěku ztratí střevíček, který princ zkouší všem dívkám v~okolí, ale jen Popelce padne jako ulitý. Nakonec Popelku ze statku odvede. 
+
+Oproti ostatním filmovým zpracováním Popelky jsou však v~této verzi hlavní hrdinové obohaceni o~nové vlastnosti. Popelka je v~podání Libuše Šafránkové energická a sebevědomá dívka: ovládá jízdu na koni, střílí z~kuše jako obratný lovec, dokonce prince provokuje. Princ Pavel Trávníček představuje svéhlavého mladíka, oddávajícího se raději lovu a zábavě s~kamarády nežli pilování dvorní etikety a přípravám na ples, při němž si má najít nevěstu.
+
+\section{Jáchyme, hoď ho do stroje!}
+Jáchyme, hoď ho do stroje! je česká filmová komedie natočená v~roce 1974 režisérem Oldřichem Lipským. Hrdinou filmu je roztržitý mladý automechanik František Koudelka (hraje Luděk Sobota), který si začne řídit život podle počítačem sestaveného kondiciogramu, takže období nejistoty v~jeho životě střídají lepší dny a naopak.
+
+Z~tohoto filmu pochází velké množství hlášek a scén, které se staly obecně známými. Symbolickými postavami se stali například psychiatr docent Chocholoušek (hraje Václav Lohniský) nebo japonský malíř miniatur Uko Ješita (hraje Tetsuchi Sassagawa). Výraznou dvojicí byli i vedoucí autoservisu Karfík (hraje Ladislav Smoljak) a psycholog Klásek (hraje Zdeněk Svěrák).
+
+\section{Jak utopit dr. Mráčka aneb Konec vodníků v~Čechách}
+Jak utopit dr. Mráčka aneb Konec vodníků v~Čechách je česká filmová komedie režiséra Václava Vorlíčka z~roku 1974, která měla premiéru 1. března 1975. Scénář napsali Petr Markov a Miloš Macourek spolu s~Václavem Vorlíčkem. Píseň Znala panna pána s~textem Petra Markova ve filmu zazpívali Valérie Čižmárová, Helena Vondráčková a Václav Neckář.
+
+V~Praze ve vlhkém domě na břehu Vltavy žije posledních sedm českých vodníků. Rodině hlavního vodníka Wassermanna podléhají sloužící Vodičkovi, bratři Bertík, Karel, Alois a jeho dcera Jana. Úřady jim za mimořádné pracovní nasazení Aloise Vodičky (při vyprošťování havarovaného autobusu z~vody se potápěl v~omylem neuzavřeném skafandru) přidělí nový byt I. kategorie s~ústředním topením a zároveň chtějí jejich dosavadní dům u~vody zbourat.
+
+\section{Marečku, podejte mi pero!}
+Marečku, podejte mi pero! je česká komedie, kterou natočil režisér Oldřich Lipský v~roce 1976. Dospělí dělníci, potřebující si zvýšit kvalifikaci, docházejí opět do školy. Ovšem jejich školní návyky z~dětských let se projevují i v~pokročilém věku. 
+
+Spokojená existence mistra v~továrně na výrobu zemědělských strojů Jiřího Kroupy je u~konce. Podnik čeká modernizace výroby, která klade nároky na vyšší kvalifikaci zaměstnanců. Vedoucí chce po Kroupovi, aby si udělal ve speciální večerní škole maturitu. Kroupa zpočátku nesouhlasí, ale nakonec se nechá přemluvit svými kolegy. Ti se děsí ambic neoblíbeného kontrolora Viktora Hujera, který si dělá zálusk na místo Kroupy. V~té samé škole studují i děti některých absolventů večerního kurzu včetně syna Kroupy Jiřího ml. Díky tomu se v~ději vyskytne množství humorných situací. Kroupa nakonec večerní školu i s~pomocí syna zdárně absolvuje a může z~podvěšené prosklené kukaně řídit zmodernizovanou výrobu.
+
+\section{Adéla ještě nevečeřela}
+Adéla ještě nevečeřela je česká filmová komedie natočená v~roce 1977 ve Filmovém studiu Barrandov Oldřichem Lipským jako parodie na filmy o~neohrožených detektivech a jejich všehoschopných protivnících. V~roce 1980 obdržela cenu Saturn pro nejlepší zahraniční film.
+
+Děj se odehrává v~Praze na počátku 20. století, v~době rozmanitých technických novinek a rozvoje nových detektivních metod. Hlavní hrdina – americký detektiv Nick Carter (Michal Dočolomanský) se s~pomocí českého komisaře Ledviny (Rudolf Hrušínský) snaží vyšetřit záhadné zmizení psa z~uzavřeného pokoje. Ze zmizení pejska je podezřelá masožravá rostlina Adéla, kterou mohl vypěstovat jedině zločinec zvaný Zahradník (Miloš Kopecký), který však má být již nebožtíkem. Podaří se ho dopadnout?
+
+\section{Ať žijí duchové!}
+Ať žijí duchové! je československá filmová pohádková komedie pro celou rodinu, kterou v~roce 1977 natočil režisér Oldřich Lipský podle námětu Dalibora Pokorného (prozaika, herce, scenáristy a malíře). Film se natáčel na zřícenině hradu Krakovec, v~jeho okolí a v~Novém Kníně. Filmový obchod stojí v~Mníšku pod Brdy.
+
+Parta dětí z~blízké obce chce mít svoji vlastní klubovnu. Pro svůj záměr si vybere zdejší opuštěný hrad Brtník, který je však spíše zříceninou, na kterém straší starý rytíř Vilém z~Brtníku (Jiří Sovák) a jeho dcera Leontýnka (Dana Vávrová). O~využití hradu má rozhodnout DrPrHrBr (Družstvo Pro Hrad Brtník). Druhou variantou využití je pěstírna žampionů, kterou prosazuje především radní Jouza (Lubomír Lipský) se svou švagrovou. Nejdříve se místní radní nemohou dohodnout, avšak děti je nakonec přesvědčí, že dokáží hrad opravit. Pomáhá jim kouzly rytíř Vilém z~Brtníku a další nadpřirozené bytosti (trpaslíci). Jeho dcera Leontýnka je v~závěru příběhu vysvobozena a stane se opět smrtelným člověkem.
+
+\section{Jak vytrhnout velrybě stoličku}
+Jak vytrhnout velrybě stoličku je rodinná televizní komedie, natočená režisérkou Marií Poledňákovou v~roce 1977. Premiéru měla na Štědrý den, 24. prosince 1977 ve 20 hodin na prvním programu tehdejší Československé televize. Po mimořádném úspěchu bylo v~roce 1978 natočeno volné „letní“ pokračování Jak dostat tatínka do polepšovny. 
+
+Na konci „polepšovny“ je zmínka, že Anna čeká s~Lubošem druhé dítě a že to určitě bude holčička. Mělo proto vzniknout ještě třetí pokračování (Jak Anděla viděla anděla), k~tomu ale již nedošlo (příběh vyšel v~90. letech knižně). Někdy se jako třetí pokračování uvádí film z~roku 2006 (Jak se krotí krokodýli), který vznikl výrazným přepracováním původního námětu. Herecké obsazení je však pochopitelně zcela jiné, a především chybí nenahraditelný Tomáš Holý, který tragicky zahynul v~březnu 1990.
+
+Anna (Jana Preissová) má náročné povolání primabaleríny, a ještě sama vychová osmiletého syna Vaška (Tomáš Holý). Tomu řekla, že jeho tatínek byl horolezec a zahynul na Annapurně pod lavinou. Vašek neustále shání náhradního tatínka, neprojde školník ani tělocvikář. Vašík má ještě jeden sen: jet s~mámou na hory. Anně se nakonec podaří uvolnit z~divadla a odjíždějí do Krkonoš, lyžovat však nesmí, případné zranění by ohrozilo všechna představení.
+
+Sotva se Vašek poprvé postaví na lyže, doslova srazí náčelníka Horské služby Luboše (František Němec), který je i horolezec. V~divadle ale dojde ke změně a máma musí odjet. Vašík přemluví Luboše, aby u~něj zůstal, dokud se máma nevrátí. Za tu dobu se naučí nejen lyžovat, ale i zjistí, že Luboš byl na Annapurně. Večer se Luboš vyptává Vaška na podrobnosti o~tatínkovi a dochází k~závěru, že Vašek musí být jeho syn.
+
+Na jaře Luboš přijíždí do Prahy. Ve slabé chvilce řekne Vaškovi, že je jeho táta. Vašek se rozzlobí, že se na něj nepřijel za celých osm let ani podívat. Marně mu maminka vysvětluje, že Luboš nevěděl o~tom, že má syna. Nakonec se Vašek s~tátou udobří a nemůže se dočkat letních prázdnin, až s~tátou zažije nová dobrodružství...
+
+
+\chapter{Vybrané filmy z~80. let}
+
+\begin{table}[h]
+\centering
+\caption{Vybrané filmy z~80. let}
+\small
+\begin{tabular}{|p{5cm}|p{3cm}|p{2cm}|c|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} \\
+\hline
+Prázdniny pro psa & Jaroslava Vošmiková & komedie & 1980 \\
+\hline
+Vrchní, prchni! & Ladislav Smoljak & komedie & 1980 \\
+\hline
+Postřižiny & Jiří Menzel & drama & 1980 \\
+\hline
+Jak svět přichází o~básníky & Dušan Klein & komedie & 1982 \\
+\hline
+Tři veteráni & Oldřich Lipský & pohádka & 1983 \\
+\hline
+Jak básníci přicházejí o~iluze & Dušan Klein & komedie & 1984 \\
+\hline
+Vesničko má středisková & Jiří Menzel & komedie & 1985 \\
+\hline
+Jak básníkům chutná život & Dušan Klein & komedie & 1987 \\
+\hline
+\end{tabular}
+\end{table}
+
+Zajímavé filmy můžeme opět najít hlavně v~žánru komedie.
+
+\section{Prázdniny pro psa}
+Prázdniny pro psa je česká filmová komedie, kterou natočila režisérka Jaroslava Vošmiková v~roce 1980, premiéra však byla až 1. července 1981. Natáčelo se především v~Praze a v~obcích Bohuliby (okres Praha-západ) a Kozolupy (okres Beroun). Jde o~poslední film Tomáše Holého, největší dětské hvězdy československého filmu. 
+
+Malý Petr (Tomáš Holý) tráví své letní prázdniny u~babičky a dědy na vesnici. Společnost mu dělá welsh terrier Black, kterého mu svěřila na tři týdny do opatrování maminčina kamarádka. Petr má problémy nejen se psem, kterého se lstí zmocní zlý pan Plavec (Oldřich Navrátil), ale i s~partou venkovských dětí, které mají zpočátku k~pražskému chlapci nedůvěru. Postupně se však spřátelí a společnými silami se snaží Blacka vysvobodit. To se jim i za pomoci dobráckého siláka Drtikola (Vladimír Kratina) podaří a Plavec je za svou hamižnost náležitě potrestán.
+
+\subsection{Zajímavosti}
+
+\begin{enumerate}
+\item Psa Blacka hraje skutečný pes Tomáše Holého, Alton.
+Tatře 813, kterou řídil Vladimír Kratina, se od té doby lidově často říká „Drtikol“.
+\item Tomáš Holý během natáčení filmu zachránil život své mladší kolegyni Monice Kvasničkové. V~té době mu bylo 12 a jí 10 let.
+\item Mezi režisérkou filmu Jaroslavou Vošmikovou, Tomášem a jeho maminkou Marií vzniklo přátelství na celý život. Navštěvovali se i po skončení natáčení, a dokonce i po Tomášově tragické nehodě.
+\item Antonín Máša napsal i volné pokračování příběhu, inspirované přímo Tomášovými povahovými rysy. Film se ale nerealizoval, protože na něj studio neuvolnilo finance.
+
+\end{enumerate}
+
+
+
+\section{Vrchní, prchni!}
+Vrchní, prchni! je československá filmová komedie z~roku 1980 (premiéra 1981), kterou natočil režisér Ladislav Smoljak, námět a scénář Zdeněk Svěrák. Symboly filmu jsou tříkolové vozítko Velorex a píseň Severní vítr (hudba J. Uhlíř, text Z. Svěrák). K~nejznámějším scénám patří testování funkcí Pařízkovic nové škodovky („stěrače stírají, klakson troubí“) a Vránovo předstírání před vlastní manželkou, že je inženýr Králík („Vypadá jako Vrána, ale je to Králík!“).
+
+Pražského knihkupce Dalibora Vránu (Josef Abrhám) si v~pohostinství spletou s~vrchním číšníkem. Protože platí alimenty svým bývalým partnerkám, bere Dalibor příležitost pevně do rukou a stává se z~něj falešný vrchní. Čas od času si obleče smoking, zkasíruje několik hostů a vzápětí se vytratí. Aby doma vysvětlil náhle zvýšené příjmy, vydává se za úspěšného barového houslistu. Nějakou dobu se mu daří, i díky střídání lokalit a maskování. V~Karlových Varech na něj skuteční vrchní uspořádají hon – falešný vrchní jim však uteče, a ještě stihne zkasírovat další lázeňskou restauraci. Nakonec Dalibor doplatí na svého souseda pana Pařízka (Zdeněk Svěrák). Dalibor Vrána je Bezpečností dopaden ve svém knihkupectví a usvědčen podle podpisu na stvrzenkách.
+		
+\section{Postřižiny}
+Postřižiny je devátý celovečerní film režiséra Jiřího Menzela z~roku 1980 (premiéra 1. února 1981) podle knihy Bohumila Hrabala. Natáčel se zejména ve městech Počátky a Dalešicích, zejména pak v~tamějším pivovaru. Film vypráví o~pivovaru a rodině jeho správce (ve skutečnosti nevlastního otce Bohumila Hrabala) za první republiky. Sám Hrabal žil v~pivovaru v~Polné v~letech 1915–1919.
+
+Málomluvný správce a sládek nymburského pivovaru (Jiří Schmitzer) má krásnou a poněkud živější manželku Maryšku (Magda Vášáryová). Kromě ní mu dělá starosti kvalita a odbyt piva a také jeho hlučný bratr Pepin (Jaromír Hanzlík), vyučený obuvník, který za ním přijel na návštěvu. Pepin je nakonec v~pivovaru zaměstnán. Jeho přítomností trpí zejména jeden ze zaměstnanců, kterému se nezřídka stane úraz tehdy, když se do jeho blízkosti nachomýtne Pepin. Symbolem malého města jsou kromě kašny i dlouhé vlasy paní sládkové, která se však jednoho dne rozhodne ostříhat.
+
+\section{Jak svět přichází o~básníky}
+Jak svět přichází o~básníky je česká komedie z~roku 1982 režiséra Dušana Kleina, námět a scénář Ladislav Pecháček. Dospívající gymnazista (Pavel Kříž) s~básnickým talentem a jeho kamarád (David Matásek) s~talentem hudebním, se domluví, že napíšou a nacvičí divadelní muzikál. Ve hře účinkuje spoustu známých postaviček z~jejich malého města, mezi jinými dívka Borůvka (Miroslava Šafránková), s~níž přijde hlavní hrdina na konci filmu o~panictví.
+
+Původně se s~žádným pokračováním filmu nepočítalo. Nakonec na úspěch filmu navázalo v~letech 1984 až 2016 dalších pět filmů s~Pavlem Křížem v~roli studenta a později lékaře Štěpána: Jak básníci přicházejí o~iluze, Jak básníkům chutná život, Konec básníků v~Čechách, Jak básníci neztrácejí naději a Jak básníci čekají na zázrak. Šestice filmů se stejnými hlavními postavami natočená v~průběhu téměř 35 let, takže hrdinové v~jednotlivých dílech přirozeně stárnou, je unikátní i v~celosvětovém měřítku.
+
+\section{Tři veteráni}
+Tři veteráni je česká barevná filmová pohádka, 21. a předposlední celovečerní film režiséra Oldřicha Lipského z~roku 1983. Scénář vznikl na motivy pohádky Jana Wericha, který ji poprvé vydal v~roce 1960 spolu s~dalšími 16 pohádkami v~knize Fimfárum. V~roce 1963 ji Jan Werich načetl pro vydavatelství Supraphon.
+
+Tři vysloužilí vojáci – dělostřelec Pankrác, dragoun Bimbác a kuchař Servác se po skončení války potulují světem. Cestou narazí na žebráka, který odpovídá na údiv Serváce (že má stejnou válečnou medaili jako oni a žebrá) slovy: „Taky budete!“ Bimbáce začne znervózňovat žebrákův skepticismus a sýčkování a zahodí mu kliku od flašinetu do rybníka. Pankrác mu dá peníz na novou. Žebrák jim zavěští: „Já si koupím jenom kliku, ale vy si šetřte na celý flašinet!“
+
+Veteráni časem zchudnou a začínají vzpomínat na slova žebráka. Jednou v~noci dostanou kamarádi od tří trpaslíků dary, Pankrác kouzelný klobouk, který umí přičarovat věci, Servác magický bezedný měšec, který je vždy plný zlaťáků a Bimbác čarovnou harfu, ta umí přičarovat armádu, čeledíny, holiče, zkrátka jakékoliv lidi. Liliputé zpovzdálí sledují, jak budou magické věci využívat, zda pro dobré či špatné účely.
+
+\section{Jak básníci přicházejí o~iluze}
+Jak básníci přicházejí o~iluze je česká komedie z~roku 1984, druhý díl „básnické hexalogie“ režiséra Dušana Kleina na námět Ladislava Pecháčka (Jak svět přichází o~básníky, Jak básníci přicházejí o~iluze, Jak básníkům chutná život, Konec básníků v~Čechách, Jak básníci neztrácejí naději, Jak básníci čekají na zázrak). Hlavní role ztvárnili Pavel Kříž, David Matásek, Adriana Tarábková a Míla Myslíková.
+
+Bývalí spolužáci z~gymnázia a kamarádi Štěpán Šafránek a Kendy odjíždějí studovat do Prahy: Štěpán medicínu na Karlovu univerzitu, Kendy režii na FAMU. Zatímco budoucí filmař Kendy se škole moc nevěnuje, ale přesto studuje bez problémů, Štěpán propadá pesimismu z~množství informací, které se má naučit, především v~anatomii, a obává se, že neprojde do druhého ročníku. Při studiu si navíc musí přivydělávat brigádami, protože s~penězi od maminky nevyjde. Při brigádě v~nemocnici se zamiluje do studentky střední zdravotní školy „Jeskyňky“ (Adriana Tarábková), o~kterou má však zájem i dr. Fast (Jiří Štěpnička). Touha dokázat, že není o~nic horší než dr. Fast, Štěpána motivuje k~tomu, že se anatomii naučí na výbornou. Při odjezdu na prázdniny jej však čeká zklamání: Jeskyňka odjíždí se svým nastávajícím – dr. Fastem.
+
+Ve druhém dílu básnické hexalogie se objevují nové zajímavé postavy: kolegové studenti černoch „Mireček“ (Joseph Dielle), šprt Honza (Karel Roden), Moravák Venoš (Václav Svoboda) a erotomanka Vendulka „Utěšitelka“ (Eva Jeníčková), kteří se krátce objeví i v~následujícím filmu Jak básníkům chutná život. Na Štěpána si zasedne vyučující anatomie doc. Sejkora (Jan Přeučil) a „zaručené“ rady, jak se snadněji učit, mu prodává podnikavý student Masařík (Akram Staněk).
+
+\section{Vesničko má středisková}
+Vesničko má středisková je československá filmová komedie natočená režisérem Jiřím Menzelem v~roce 1985 podle scénáře Zdeňka Svěráka. Film se natáčel v~obci Křečovice (okres  Benešov), v~jejím okolí a v~Praze.
+
+Děj se soustředěn kolem mentálně opožděného závozníka Otíka Rákosníka (maďarský herec János Bán), který nechtěně způsobuje svému řidiči, panu Pávkovi (Marian Labuda) jeden malér za druhým. Pávkova trpělivost přeteče, když kvůli Otíkovi při couvání zbourá nový sloupek vrat vlivnému pražskému chalupáři. Otík má být přeřazen k~cholerickému vzteklounovi Turkovi (Petr Čepek). „Náhodou“ v~té době Otík dostane nabídku na byt a práci v~Praze. Než by Otík pracoval jako závozník u~Turka, raději souhlasí s~přestěhováním do velkoměsta. Na poslední chvíli ho však Pávek zachrání. Vedlejší dějovou linií jsou osudy pracoval . 
+
+\section{Jak básníkům chutná život}
+Jak básníkům chutná život je česká komedie z~roku 1987, třetí díl „básnické hexalogie“ režiséra Dušana Kleina na námět Ladislava Pecháčka (Jak svět přichází o~básníky, Jak básníci přicházejí o~iluze, Jak básníkům chutná život, Konec básníků v~Čechách, Jak básníci neztrácejí naději, Jak básníci čekají na zázrak). Hlavní role ztvárnili Pavel Kříž, David Matásek, Eva Vejmělková a Míla Myslíková.
+
+Po úspěšném zakončení studia medicíny Štěpán Šafránek nastupuje jako lékař na interní oddělení okresní nemocnice, absolvent FAMU Kendy získává místo asistenta režie v~Československé televizi a v~rodném Hradišti natáčí se štábem seriál. Po problémech s~primářkou je Štěpán přeložen na místo obvodního lékaře v~Bezdíkově, kde potkává svou novou lásku:  učitelku hudby Alenu Hubáčkovou, „Píšťalku“ (Eva Vejmělková, dabuje ji Zlata Adamovská). S~ní v~závěru filmu odjíždí za novou prací do severních Čech.
+
+Ve třetím díle básnické hexalogie se znovu setkáváme se Štěpánovými spolužáky ze studia: černoch „Mireček“ přijíždí s~delegací OSN ze Ženevy na návštěvu do Československa, Vendulka „utešitelka“ pracuje jako úřednice na ministerstvu zdravotnictví. Ve filmu se objevují nové zajímavé postavy: bláznivá fanynka Karla Gotta a zdravotní sestra v~Bezdíkově Tonička (Jana Hlaváčová), řidič sanitky Pisařík (Pavel Zedníček) nebo svérázný malíř a otec Píšťalky (Rudolf Hrušínský).
+
+
+\chapter{Vybrané filmy z~90. let}
+
+\begin{table}[h]
+\centering
+\caption{Vybrané filmy z~90. let}
+\small
+\begin{tabular}{|p{4.5cm}|p{3cm}|p{2.5cm}|c|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} \\
+\hline
+Tankový prapor & Vít Olmer & komedie & 1991 \\
+\hline
+Obecná škola & Jan Svěrák & drama/komedie & 1991 \\
+\hline
+Černí baroni & Zdeněk Sirový & komedie & 1992 \\
+\hline
+Konec básníků v~Čechách & Dušan Klein & komedie & 1993 \\
+\hline
+Nesmrtelná teta & Zdeněk Zelenka & pohádka & 1993 \\
+\hline
+Saturnin & Jiří Věrčák & komedie & 1994 \\
+\hline
+Kolja & Jan Svěrák & drama/komedie & 1996 \\
+\hline
+Báječná léta pod psa & Petr Nikolaev & drama/komedie & 1997 \\
+\hline
+Lotrando a Zubejda & Karel Smyczek & pohádka & 1997 \\
+\hline
+Pelíšky & Jan Hřebejk & komedie & 1999 \\
+\hline
+\end{tabular}
+\end{table}
+
+Změna společenských poměrů se projevila jak ve způsobu výroby filmů (vznikají nové soukromé filmové společnosti), tak v~tématech filmů.
+
+\section{Tankový prapor}
+Tankový prapor je československý film režiséra Víta Olmera z~roku 1991 natočený ve filmovém studiu Barrandov společností Bonton a.s. podle stejnojmenné literární předlohy Josefa Škvoreckého. Jde o~první film z~počátku 90. let natočený soukromou společností.
+
+V~hlavní roli Lukáš Vaculík. Návštěvnost přesáhla dva miliony diváků a tržby dosáhly 55 milionů korun. Natáčení probíhalo v~bývalém vojenském prostoru v~Podbořanech, v~Berouně, u~obce Valov a na nádraží Nová Ves pod Pleší. Přestože se děj románu odehrává mezi lety 1951–1953, scenáristé přesunuli celý děj filmu do roku 1953.
+
+Hlavní postavou je doktor filosofie Danny Smiřický, který je v~rámci povinné vojenské služby přidělen k~tankovému praporu ve vojenském prostoru Kobylec. Jako velitel tanku T-34/85 prodělává cvičení, jako kulturní pracovník je přítomen plnění Fučíkova odznaku a zažívá další příhody z~vojenského prostředí 50. let. Ve volných chvílích vzpomíná na vdanou Lizetku, se kterou se v~civilním životě pokoušel navázat vztah. V~kasárnách se zamiluje do ženy jednoho z~důstojníků Jany Pinkasové. Zažije návštěvu sovětského vojenského poradce a je také svědkem utonutí v~jímce velitele tábora majora Borovičky. V~konci příběhu odchází do civilu.
+
+\section{Obecná škola}
+Obecná škola je československý film režiséra Jana Svěráka, natočený v~roce 1991 podle scénáře Zdeňka Svěráka. Film se stal populární u~kritiky i fanoušků a byl dokonce nominován na Oscara za nejlepší zahraniční film. Ve snímku je zachyceno krátké euforické období po 2. světové válce a mnoho méně či více úsměvných historek dětí navštěvujících chlapeckou obecnou školu. Dějově Obecné škole předchází film Po strništi bos, který byl natočen v~roce 2017.
+
+Film je do značné míry autobiografií scenáristy Zdeňka Svěráka. Ten poznamenává, že při dotočení filmu Jako jed v~Košicích v~hotelu Slovan vzpomínali zúčastnění herci a členové filmového štábu na dětství a na školu. Vít Olmer požádal Zdeňka Svěráka, aby napsal film o~škole. Tak vznikl scénář k~filmu Obecná škola, který však Olmer nakonec nepřijal (točil místo toho film Tankový prapor). Film pak natočil Zdenkův syn Jan Svěrák.
+
+\subsection{Zajímavosti}
+
+\begin{enumerate}
+
+\item Jedná se o~celovečerní debut režiséra Jana Svěráka, který vystudoval režii dokumentárního filmu a do té doby točil pouze dokumentární filmy.
+\item Jedná se o~první film, který se vysílal v~roce 1994 na TV Nova.
+
+\item Ve filmu si zahráli tři režiséři (nepočítáme-li příležitostného režiséra Rudolfa Hrušínského): Irena Pavlásková („Mám pravý kafe z~UNRRY“), Karel Kachyňa (školní inspektor:  „Ponechte ho v~chlapecké třídě“), a Jiří Menzel (gynekolog).
+\end{enumerate}
+
+\section{Černí baroni}
+Černí baroni je česká filmová komedie z~roku 1992 režiséra Zdeňka Sirového natočená na motivy stejnojmenné knihy Miloslava Švandrlíka. Film představuje „pétepáky“ – příslušníky Pomocného technického praporu (Ondřej Vetchý, Václav Vydra, Boris Rösner, atd.). Praporu, tvořeného lidmi tehdy označovanými jako třídní nepřátelé komunistického Československa padesátých let 20. století (intelektuálové, lidé buržoazního původu, sedláci, věřící atd. – zkrátka režimu nepřátelské „reakcionářské“ živly). Jejich velitelé: důstojníci (Pavel Landovský, Jiří Schmitzer, Miroslav Donutil, Bronislav Poloczek, Alois Švehlík) nejsou příliš vzdělaní, zato politicky velmi aktivní (například na otázku „Kdo zaútočil na Zimní palác v~Petrohradě?“ odpoví kpt. Ořech při inspekci „křižník Potěmkin“). Z~jejich střetů pak vzniká spousta absurdních situací parodujících poměry tehdejší doby.
+
+Poznámka: podle knihy Miloslava Švandrlíka vznikl též seriál České televize se stejným názvem. Seriál však byl natočen až v~roce 2003 a režisérem byl Juraj Herz.
+
+\section{Konec básníků v~Čechách}
+Konec básníků v~Čechách je česká filmová komedie z~roku 1993: čtvrtý díl „básnické hexalogie“ režiséra Dušana Kleina na námět Ladislava Pecháčka (Jak svět přichází o~básníky, Jak básníci přicházejí o~iluze, Jak básníkům chutná život, Konec básníků v~Čechách, Jak básníci neztrácejí naději, Jak básníci čekají na zázrak). Hlavní role hrají Pavel Kříž, David Matásek, Tereza Brodská a Míla Myslíková.
+
+Děj filmu se odehrává po Sametové revoluci, Kendy (David Matásek) pracuje jako reportér a reklamní agent, natočí se Štěpánem (Pavel Kříž) rozhovor, kvůli kterému je Štěpán vyhozen z~nemocnice. Vrací se zpět do rodného Hradiště, kde se vše mění. Maminka (Míla Myslíková) pracuje stále jako švadlena, chodí ovšem do obnoveného Sokola, snaží se svého rozvedeného a nezaměstnaného syna zaměstnat a seznámit s~nějakou dívkou.
+
+Štěpán prochází nabídkou práce v~soukromé klinice, práce jako ředitele polikliniky. Seznámí se s~lékárnicí Ute (Tereza Brodská), která nemá ráda dotyky na uších (kultovní hláška Na ucho ne!). Na konci jde pracovat do kláštera, ve kterém se řádové sestry starají o~mentálně postižené děti.
+
+\section{Nesmrtelná teta}
+Nesmrtelná teta je česká celovečerní filmová pohádka scenáristy a režiséra Zdeňka Zelenky z~roku 1993, kterou režisér napsal na jeden z~motivů dvoustránkové pohádky „Rozum a štěstí“ Karla Jaromíra Erbena. Jiřina Bohdalová obdržela za hlavní roli v~tomto filmu v~roce 1993 Českého lva. Podle Unie českých distributorů je Nesmrtelná teta v~kinech divácky nejnavštěvovanější pohádkou posledních takřka dvaceti let. Ve své době patřila k~vůbec nejdražším projektům československé kinematografie. Jistě každý zná slova Závisti: „Štěstí pomine, Rozum se ztratí. Jenom já, Závist, jsem věčná.“
+
+\section{Saturnin}
+Saturnin je česká komedie, kterou v~roce 1994 natočil režisér Jiří Věrčák podle stejnojmenného klasického humoristického románu Zdeňka Jirotky. Jana Synková byla za roli tety Kateřiny nominována v~kategorii ženský herecký výkon ve vedlejší roli na cenu Český lev. Snímek byl později upraven také do podoby televizního miniseriálu.
+
+Mladý úředník Jiří Oulický si do svých služeb najme sluhu Saturnina. Nový sluha vyhovuje všem jeho potřebám a má dokonce i doporučení. Avšak po chvíli začíná roznášet mezi lidi nepravdivé příhody, které se staly jeho pánu na výpravách po safari. Když už všichni věří, tak si pána zavolají, aby skolil lva, který utekl ze ZOO. Ale dřív, než dorazí na místo, je lev polapen.
+
+Když se vrací pán další den z~práce domů, zjišťuje, že jej Saturnin přestěhoval na houseboat. Sluha svůj čin obhajuje tím, že byt už nevyhovoval a loď je lepší. A~tak se Oulický s~tím vším smiřuje.
+
+Další děj filmu se odehrává na dědečkově sídle na venkově. Oulický se snaží udělat dojem na krásnou Barboru, se kterou se zná z~tenisu. Na sídle jsou také přítomni rodinný přítel doktor Vlach a teta Kateřina se svým synem Miloušem, který se chce s~Oulickým vsadit, kdo dostane jako první Barboru. A~tak se Oulický se Saturninem domlouvá na tajný boj proti Miloušovi. Avšak při bouři vypadne proud a strhne jediný most, který byl jediné spojení s~okolním světem. A~tak se, poté co začnou docházet zásoby, rozhodnou vydat k~řece a přeplavat ji. Později ale zjistí, že to nebyl tak dobrý nápad a raději se vydají k~chatě dr. Vlacha odkud se rozhodnou pokračovat přes les na druhou stranu řeky. Než ovšem dorazí, nový most již dávno stojí. Nakonec Saturnin zůstane v~dědečkových službách a spolu se rozhodnou založit „kancelář pro uvádění románových příběhů na pravou míru“.
+
+\section{Kolja}
+Kolja je český hraný film režiséra Jana Svěráka natočený v~roce 1996. Uspěl doma i v~zahraničí. V~České republice ho vidělo 1 346 669 diváků (zůstává nejnavštěvovanějším českým filmem), získal šest Českých lvů, včetně toho za nejlepší film. V~zahraničí získal ocenění Oscar a Zlatý glóbus jako nejlepší neanglicky mluvený film. Byl uveden ve 40 zemích světa, kde ho viděly asi tři miliony diváků.
+
+Hlavní hrdina filmu – starý mládenec Louka (hraje ho autor scénáře Zdeněk Svěrák) se pro peníze fingovaně ožení s~Ruskou. Situace se zamotá, když mu na krku po její emigraci do Západního Německa zůstane její malý syn Kolja (Andrej Chalimon). Chlapec neumí česky a zpočátku mezi nimi panuje vzájemná nedůvěra. Později se muž s~chlapcem spřátelí, i když má kvůli němu potíže s~úřady.
+
+\section{Báječná léta pod psa}
+Báječná léta pod psa je český film z~roku 1997. Film byl natočen podle námětu Michala Viewegha, předlohou byl jeho stejnojmenný román s~autobiografickými prvky. Děj filmu začíná v~60. letech 20. století, kdy se během divadelního představení Čekání na Godota malý Kvido narodí. To asi předurčí jeho další život, neboť se u~něj projeví literární nadání. To přináší nejeden problém ve škole i později v~dospívání. 
+
+Film zároveň líčí i problémy v~tehdejším Československu před okupací v~roce 1968 i během normalizace. Kvidův otec se za cenu drobných politických ústupků vypracuje na místo vedoucího inženýra, za návštěvu disidenta je však sesazen a skončí jako vrátný. Trpí depresemi, zdá se však, že vše by mohlo vyřešit vnouče.
+
+\section{Lotrando a Zubejda}
+Lotrando a Zubejda je filmová pohádka režiséra Karla Smyczka a scenáristy Zdeňka Svěráka z~roku 1997. Děj je založen na motivu pocházejícího ze dvou pohádek z~knihy Devatero pohádek Karla Čapka (konkrétně: Druhá loupežnická pohádka a Velká pohádka doktorská). Část děje byla natáčena v~polenském městském muzeu v~expozici Stará škola.
+
+\section{Pelíšky}
+Pelíšky jsou česká komedie režiséra Jana Hřebejka z~roku 1999. Film se odehrává na konci 60. let dvacátého století a je vyprávěn očima dospívajícího chlapce. Jeho otec (hraje Miroslav Donutil) je voják z~povolání a svému synovi příliš nerozumí. Soused (Jiří Kodet) je bývalý voják, nesnáší komunisty a své dceři rovněž nerozumí. Film získal celkem tři České lvy za nejlepší mužský herecký výkon (Jiří Kodet), za plakát a divácky nejúspěšnější film.
+
+
+\chapter{Vybrané filmy ze začátku 21. století}
+
+\begin{table}[h]
+\centering
+\begin{adjustwidth}{-1cm}{-1cm}
+\caption{Vybrané filmy ze začátku 21. století}
+\small
+\begin{tabular}{|p{4cm}|p{2.5cm}|p{3cm}|c|p{3.5cm}|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} & \textbf{Poznámka} \\
+\hline
+Tmavomodrý svět & Jan Svěrák & drama & 2001 & čtyři České lvy \\
+\hline
+Čert ví proč & Roman Vávra & pohádka & 2003 & \\
+\hline
+Želary & Ondřej Trojan & drama & 2003 & nominace na Oscara \\
+\hline
+Jak básníci neztrácejí naději & Dušan Klein & komedie & 2004 & pátý díl hexalogie \\
+\hline
+Snowboarďáci & Karel Janák & komedie & 2004 & nejnavštěvovanější film roku \\
+\hline
+Román pro ženy & Filip Renč & komedie & 2005 & \\
+\hline
+Anděl Páně & Jiří Strach & pohádka/komedie & 2005 & \\
+\hline
+Vratné lahve & Jan Svěrák & komedie/drama & 2007 & tři České lvy \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+\section{Tmavomodrý svět}
+Tmavomodrý svět je český film natočený režisérem Janem Svěrákem v~roce 2001. Název je inspirován barvou leteckých uniforem a též stejnojmennou písní Jaroslava Ježka, jejíž název je odvozen od Ježkovy vady zraku. Film vznikl na motivy autobiografických knih válečného letce Františka Fajtla. Získal čtyři České lvy – za nejlepší režii, kameru, hudbu a střih a při stejné příležitosti i cenu za divácky nejúspěšnější český film.
+
+Film vypráví o~československých letcích za druhé světové války ve Velké Británii. Začátek filmu nás zavádí do roku 1950, kdy je František Sláma vězněm na Mírově a bojuje se zápalem plic. Na marodce se setká s~německým lékařem MUDr. Blaschkem, který ho ošetřuje, a Vildou Houfem, jimž vypráví svůj příběh válečného pilota bojujícího za svoji vlast ve Velké Británii.
+
+\section{Čert ví proč}
+Čert ví proč je slovensko-německo-česká filmová pohádka z~roku 2003 režiséra Romana Vávry. Film byl natáčen na hradech hradě Lipnice nad Sázavou, Pernštejn a Grabštejn. Film byl v~kinech premiérově uveden 27. února 2003. Televizní premiéra se odehrála na stanici ČT1 24. prosince 2004, kdy byl odvysílán jako štědrovečerní pohádka České televize.
+
+Král Dobromil (Josef Somr) je na cestách. Správu království svěřil ministrovi (Jiří Lábus), který chce ve spolupráci s~Luciferem (Csongor Kassai, v~češtině jej mluví Oldřich Kaiser) ožebračit a ovládnout království. Dření obyvatel z~kůže v~tomto království pomocí vzrůstajících daní dohání obyvatelstvo k~exilu z~království. Škrt přes rozpočet spiklencům by však mohl udělat sňatek jednorozené princezny Aničky s~bohatým ženichem. Král se vrací z~cest a nachází zbídačené království. Aby zachránil, co se dá, rozhodne se upsat svou duši peklu. Pekelný úpis není příliš dobré řešení. Podobnou fintou se Lucifer zmocnil i vedlejšího království, odkud pochází princ Filip, který je nápadníkem princezny Aničky (Taťána Pauhofová). Filipovi se podaří obelstít Lucifera, osvobodit obě království a pojmout Aničku za ženu. 
+
+Prince Filipa zahrál neherec Štěpán Kubišta (v~češtině ho mluví Jan Dolanský), mezi další významné role patří bylinářka Apolena (Iva Janžurová), sluha (Lubomír Kostelka) nebo šašek (Boris Hybner). 
+
+\section{Želary}
+Želary je české filmové drama režiséra Ondřeje Trojana z~roku 2003. Vypráví příběh mladé Elišky v~období okupace v~40. letech 20. století. Eliška je nedostudovaná lékařka (tehdy byly nuceně uzavřeny vysoké školy) a členka tajného odboje. Musí se ukrýt v~horách ve vesnici Želary (název vesnice je fiktivní a vesnice ve skutečnosti neexistuje). Drsný romantický příběh získal mnoho ocenění i nominaci na Oscara.
+
+Jako námět a předloh pro film posloužila novela Jozova Hanule české spisovatelky Květy Legátové (vlastním jménem Věra Hofmanová). Vydána byla roku 2002 nakladatelstvím Paseka. 
+
+\section{Román pro ženy}
+Román pro ženy je česká filmová komedie z~roku 2005 podle stejnojmenné knižní předlohy Michala Viewegha. Hlavní roli Laury ztvárnila Zuzana Kanócz, její matku, která nesnáší Čechy a čecháčkovství zahrála Simona Stašová a roli Olivera alias Pažouta, který je nynějším galantním milencem Laury a někdejším milencem její matky Marek Vašut. Roli Ingrid, která nesnáší muže, zahrála Ladislava Něrgešová a roli babičky ztvárnila Stella Zázvorková. Písně ve filmu zpívala skupina Support Lesbiens a Iva Frühlingová.
+
+Laura si jako obvykle jen tak zaběhne ke své oblíbené kadeřnici a všem poví svůj „životní příběh“. Ani zjištění, že Oliver (Marek Vašut) byl kdysi milenec její mámy (Simona Stašová), oba neodradí od vztahu plného vášně. Podobně jako Laura (Zuzana Kanócz) i její ovdovělá máma se snaží najít muže, který ovšem musí splňovat její náročné požadavky. V~první řadě by to neměl být Čech. Jana je žena světaznalá (polovinu svých replik má v~angličtině nebo ve francouzštině), elegantní a z~titulu svého věku by už měla být dostatečně uvědomělá. Ale v~podstatě je stejně praštěná jako její o~dvacet let mladší dcera. V~další vedlejší roli se objevuje Miroslav Donutil coby Lauřin a Janin soused Žemla, kterému je po většinu filmu vyhrazen k~hereckým projevům pouze balkon.
+
+\section{Jak básníci neztrácejí naději}
+Jak básníci neztrácejí naději je česká filmová komedie režiséra Dušana Kleina z~roku 2004 s~podtitulem Naštěstí se občas najde důvod na život...
+
+Zatím předposlední díl hexalogie Dušana Kleina o~bláznivých a věčně zamilovaných básnících vypráví opět příběh Štěpána Šafránka (Pavel Kříž), který však již jako čtyřicátník bojuje s~daleko jinými životními nástrahami, než tomu bylo v~prvních dílech „Básníků“.
+
+Celý film začíná smutnou událostí. Štěpánova maminka, ve všech ostatních dílech hraná Mílou Myslíkovou, zemřela. Štěpánkovi se pomalu hroutí jeho vztah s~Ute aneb s~„Popelkou“ (Tereza Brodská), do které se zamiloval již v~minulém dílu s~názvem Konec básníků v~Čechách. Ute je stále lékárnicí v~lékárně „U černé madony“, nyní však již vede několik dalších vlastních lékáren. Z~jejich lásky se stal spíše přátelský vztah s~jednodenním pravidelným sexem, a to v~pondělí. Oba dva o~svých problémech nedokáží mluvit a odcizí se.
+
+V~této situaci Štěpánek poznává v~nemocnici, kde se sám má stát ředitelem, mladou Aničku (Michaela Badinková). Zamiluje se do ní a probudí tím své staré dobré básnické střevo. O~problémy se postará skutečnost, že Anička pracuje u~Ute v~její lékárně, přičemž Ute je její bezprostřední šéfová. Štěpánek se tak ocitne mezi dvěma mlýnskými kameny. Podobně se mu vede i v~jeho mezitím získané funkci ředitele nemocnice. Ze všech stran se na něho valí požadavky: jak ze strany doktorů, které dynamicky zastupuje mladý internista hraný Leošem Marešem, tak i ze strany politiky, ve které se mezitím horečnatě angažuje z~předešlých dílů známý Nádeníček (Oldřich Navrátil). Do bojů o~finance nemocnice se zapojují i jiní staří známí, např. Vendulka „Utěšitelka“ (Eva Jeníčková), která zde hraje zástupkyni ministerstva.
+
+Do toho se Kendymu (David Matásek) rozpadne manželství. Přijde o~byt i auto, hledá pomoc a přístřešek u~Štěpánka, tato část popisuje dva muže středního věku, kteří spolu jako velmi dobří přátelé bydlí. Nejpozději v~tomto dílu se také ukáže, že Kendy je nenapravitelný milovník žen, protože již zanedlouho po nastěhování ke Štěpánkovi objeví jeho atraktivní sousedku (Adriana Karembeu).
+
+Hlavní děj se však stále točí kolem vztahu Štěpána s~Aničkou, kterou Štěpán láskyplně jmenuje „Veverka zrzečka“. Ta, poté co se domnívá, že se Ute k~Štěpánovi chce nastěhovat, zmizí z~jeho života. V~rámci lékařského výjezdu ji Štěpán objeví až po sedmi měsících. Anička je v~jiném stavu a čeká očividně Štěpánovo dítě.
+
+\section{Snowboarďáci}
+Snowboarďáci je česká filmová komedie pro mladé z~roku 2004 od režiséra Karla Janáka a stejnojmenný seriál, který vysílala Česká televize v~roce 2005 (delší verze: 3x52 minut). Film měl premiéru 4. listopadu 2004. V~obecné populaci nebyl film až tak úspěšný, mezi teenagery se však v~té době stal kultovním filmem. V~rámci cen Český lev byl vyhlášen za nejnavštěvovanější český film roku 2004, dále byl nominován na Českého lva v~kategoriích střih (A. Dvořák) a hudba (M. Chyška), ani jednu nominaci však neproměnil. Skladba On My Head (zpívá Dan Bárta) se rovněž stala hitem, Úspěch filmu vedl Karla Janáka k~natočením volného (dějově nenavazující) pokračování, filmu Rafťáci (2006). Jak Vojtěch Kotek (pro kterého to nebyl první film), tak Jiří Mádl se po tomto filmu stali hvězdami.
+
+Rendy (Vojtěch Kotek) a Jáchym (Jiří Mádl) mají dost trávení Silvestru s~rodiči a navíc se chtějí naučit jezdit na snowboardu. V~herně vyhrají permanentky a bydlení mají zajištěné u~Jáchymova bratrance (Jiří Langmajer). Jáchym sebou musí vzít svou otravnou sestru (Ester Geislerová), kterou nenávidí. U~bratrance záhy zjistí, že jsou tam spíše na pracovním táboře než na dovolené a ani učení na snowboardu jim nejde. 
+
+Na stejné chatě bydlí i 3 holky, které se klukům líbí, ale kluci se snaží zamaskovat, že na snowboardu vlastně jezdit neumí. Stejné holky se snaží sbalit i skupina místních frajerů, kteří si říkají Snow Panthers. Kluci jdou z~maléru do maléru (ztratí bratrancova psa, nabourají mu auto, naštvou sestru, spadnou do řeky) a vše vyústí jízdou po lavinovém svahu s~Pantery, po které skončí v~nemocnici. Těsně před půlnocí z~nemocnice utečou zpátky na chatu. Holky, které mají výčitky, že kluci mají úrazy kvůli nim, se naštvou na Pantery a vše končí dobře.
+
+\section{Anděl Páně}
+Anděl Páně je filmová pohádková komedie režiséra Jiřího Stracha z~roku 2005. Snímek kombinuje prvky lidové pohádky a vánoční hry. Vzhledem k~velkému úspěchu této pohádky bylo v~roce 2015 známeno, že se připravuje pokračování Anděl Páně 2 a jeho premiéra byla naplánována na  konec roku 2016
+
+Na Nebi se den před Ježíškovými narozeninami probouzí anděl Petronel (Ivan Trojan) a hned jak ho Panna Maria (Klára Issová) pověří prvním úkolem – přinést z~trouby plech s~vánočním cukrovím – Petronel upadne a cukroví rozsype. Při zkoušce nebeského andělského sboru ho zase sbormistryně – archanděl Gabriel (Gabriela Osvaldová) – vyhodí ven, protože zpívá falešně. Petronel však sám sobě připadá bez vad a myslí si, že ostatní jen nevidí, jak je dobrý. Postěžuje si Pánu Bohu (Jiří Bartoška), že potřebuje, aby mu někdo dal nějakou příležitost ukázat, co v~něm je. Bůh Petronela přijme s~vlídností a příležitost mu skutečně nabídne. Rybář svatý Petr šel pro vánoční kapry a Petronel ho tedy může zastoupit u~nebeské brány.
+
+Zde si počíná velmi razantně a sverázně, nakonec kritizuje i samotného Pána Boha a tak spolu s~čertem Uriášem musí splnit úkoly na Zemi, kde se odehrává hlavní část příběhu.
+
+\section{Vratné lahve}
+Vratné lahve je český film režiséra Jana Svěráka, natočený v~roce 2007 podle scénáře Zdeňka Svěráka. V~tomtéž roce byl film oceněn 3 Českými lvy (Jan Svěrák: nejlepší režie, Zdeněk Svěrák: nejlepší scénář a divácky nejúspěšnější film), na několik dalších Českých lvů byl nominován. Jan Svěrák dále získal Křišťálový globus na MFF Karlovy Vary a dvě ceny film získal na filmovém festivalu v~Tallinnu.
+
+Josef Tkaloun (Zdeněk Svěrák) je pětašedesátiletý učitel češtiny na gymnáziu. Když mu ujedou nervy a drzého žáka svérázně zkrotí (vyždímá mu houbu na tabuli nad hlavou), raději školu sám opouští. Nevydrží ale nečinně užívat si důchodu, a tak si ke zděšení manželky (Daniela Kolářová) nachází novou práci – stává se messengerem na kole. Náledí a bezohledné auto však vykonají svoje. Dříve než odloží berle, opatří si bezpečnější zaměstnání ve výkupu lahví v~supermarketu. 
+
+Od svého okénka má přehled, může si popovídat se zákazníky a zákaznicemi, a především dá dohromady svého spolupracovníka přezdívaného Mluvka (Pavel Landovský) s~paní Kvardovou. Novou známost dohodí i své dceři Helence (Tatiana Vilhelmová), kterou opustil manžel. Později je však nahrazen automatem na lahve, proto i ze supermarketu musí odejít. Nakonec manželku zaskočí výletem s~překvapením k~jejich čtyřicátému výročí svatby. A~o~překvapení na tomto výletu skutečně nebude nouze.
+
+
+\chapter{Vybrané filmy z~let 2011-2020}
+
+\begin{table}[h]
+\centering
+\begin{adjustwidth}{-1cm}{-1cm}
+\caption{Vybrané filmy z~let 2011--2020}
+\small
+\begin{tabular}{|p{4cm}|p{2.5cm}|p{3cm}|c|p{3.5cm}|}
+\hline
+\textbf{Název} & \textbf{Režisér} & \textbf{Žánr} & \textbf{Rok} & \textbf{Poznámka} \\
+\hline
+Alois Nebel & Tomáš Luňák & animovaný & 2011 & rotoskopická technika \\
+\hline
+Lidice & Petr Nikolaev & drama & 2011 & \\
+\hline
+Jak jsme hráli čáru & Juraj Nvota & drama & 2014 & \\
+\hline
+Jak básníci čekají na zázrak & Dušan Klein & komedie & 2016 & poslední díl hexalogie \\
+\hline
+Anděl Páně 2 & Jiří Strach & pohádka/komedie & 2016 & pokračování z~2005 \\
+\hline
+Po strništi bos & Jan Svěrák & drama & 2017 & předchází Obecné škole \\
+\hline
+Ženy v~běhu & Martin Horský & komedie & 2019 & nejrychlejší milion diváků \\
+\hline
+Vlastníci & Jiří Havelka & komedie & 2019 & \\
+\hline
+Párty Hárd (doplněno) & Martin Pohl & komedie & 2019 & \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+\section{Alois Nebel}
+Alois Nebel je postava výpravčího z~komiksu (a následně filmu) spisovatele a scenáristy Jaroslava Rudiše a kreslíře Jaromíra Švejdíka působícího pod pseudonymem Jaromír 99. Nebel se objevil nejprve v~trilogii grafických románů „Bílý potok“ (2003), „Hlavní nádraží“ (2004) a „Zlaté Hory“ (2005). Nebelovy příhody vycházely ve formě krátkých komiksových stripů v~časopisech Reflex a Respekt. V~Ústí nad Labem vznikla podle komiksu divadelní hra a v~roce 2011 natočil režisér Tomáš Luňák stejnojmenný celovečerní film. Film využívá speciální animační techniky, tzv. rotoskopie. Filmaři nejprve natočili klasické hrané scény, ty byly poté políčko po políčku obkresleny.
+
+Příběh filmu začíná na podzim roku 1989 na železniční stanici Bílý Potok v~Jeseníkách, kde slouží jako výpravčí Alois Nebel (Miroslav Krobot). Nebel je tichý samotář, kterého čas od času přepadne podivná mlha. Nejčastěji se mu v~ní zjevuje Dorothe (Tereza Voříšková), oběť násilného odsunu Němců po 2. světové válce. Šedivé dny na nádraží v~Bílém Potoce na sklonku socialismu líně plynou, výhybkář Wachek (Leoš Noha) společně se svým otcem (Alois Švehlík) kšeftují s~důstojníky sovětské armády. Poklidnou atmosféru naruší jednoho dne Němý (Karel Roden), který překročí hranice se sekyrou v~ruce, aby pomstil svoji matku. Halucinace nakonec Nebela přivedou do blázince a přijde o~místo výpravčího. Vydá se do Prahy hledat jinou práci u~dráhy a na Hlavním nádraží najde svou životní lásku, toaletářku Květu (Marie Ludvíková). Nebel se rozhodne vrátit zpátky do hor, aby se znovu setkal s~Němým a souboj s~temnými stíny minulosti dovedl do konce.
+
+\section{Lidice}
+Lidice je český film, jehož scénář napsal Zdeněk Mahler na náměty své knihy Nokturno. Režie byla svěřena Alici Nellis (původní jednání s~Jiřím Svobodou či Polkou Agnieszkou Hollandovou neskončila dohodou), ale kvůli její nemoci (borelióza) ji nahradil Petr Nikolaev.
+
+Nikolaev se tak dostal k~tématu, které jej zaujalo již v~době, kdy vyšla Mahlerova kniha Nocturno. Po přistoupení k~projektu vyměnil na postu kameramana Vladimíra Smutného za Antonia Riestru, později udělal i změny v~obsazení – Lenku Vlasákovou nahradil Zuzanou Fialovou a Marthu Issovou Veronikou Kubařovou. Rozpočet filmu činil 65–70 milionů korun, natáčení probíhalo od července 2010. Premiéra byla v~červnu 2011. Na filmu v~koprodukci spolupracovali také Poláci.
+
+\section{Jak jsme hráli čáru}
+Jak jsme hráli čáru je český film (se slovenskou koprodukcí) režiséra Juraje Nvoty podle scénáře Petera Pišťánka a Mariana Urbana z~roku 2014. Děj filmu se odehrává v~československém pohraničí nedaleko Rakouska, kam emigrovali jeho rodiče. Malý Petr proto žije se svými prarodiči a rodině stále hrozí odebrání Petra a jeho umístění do dětského domova. Malý Petr přemýšlí, jak hranici také překonat. Ve škole a ve volném čase prožívá řadu dobrodružství i boje s~další partou velkých kluků, kteří bijí slabší a říkají si černogardisti.
+
+\section{Jak básníci čekají na zázrak}
+Jak básníci čekají na zázrak je česká filmová komedie, poslední část „básnické“ hexalogie režiséra Dušana Kleina a scenáristy Ladislava Pecháčka s~podtitulem Konec legendy, která měla premiéru 14. dubna 2016. Natáčení probíhalo v~Praze, Litoměřicích, Kladně a Mělníku. Jak k~předchozím filmům, tak i k~tomuto filmu nakreslil glosující animované vsuvky kreslíř a karikaturista Adolf Born. Jednalo se o~jeho poslední dílo pro film před jeho smrtí v~květnu 2016.
+
+Štěpán (Pavel Kříž) i Kendy (David Matásek) (a stejně tak i podnikatel Karas: Lukáš Vaculík)) zůstali i po letech pořád stejní a i přesto, že jim přibylo pár dalších vrásek a zdravotních problémů, tak pořád jdou nekompromisně za svými sny. I~když Štěpána jsme v~minulém díle zastihli na vrcholu jeho osobního štěstí, kdy již konečně našel životní lásku a narodil se mu syn, tak tento díl začíná více než skepticky – Štěpánova žena Anička-Zrzečka (Michaela Badinková) umřela a on tak zůstal sám se synem Štěpánem Juniorem (Filip Antonio), s~jehož výchovou mu vydatně pomáhají právě Karas s~Kendym. Kendy se rozhodl překonat svůj stín a po létech režírování reklam se rozhodl pokusit natočit první celovečerní film. 
+
+Karas se nakonec rozhodl své vozidlo Blue Dream hýčkat už jen virtuálně a Štěpán je opět v~kolotoči svých pracovních povinností, kdy je zástupcem primáře na oddělení a zároveň prudce válčí s~Vendulkou-Utěšitelkou (Eva Jeníčková), která se stala novou ředitelkou nemocnice. Navíc se z~něj stal kolem padesátky chodící hypochondr, který se krok za krokem bojí o~své zdraví.
+
+Novým objektem lásky se tak pro Štěpána stane jeho pohledná sousedka a fotografka (Linda Rybová), kterou mu začnou právě jeho nezbední kamarádi dohazovat. Další maléry tak na sebe nenechají dlouho čekat.
+
+Režisér snímku Dušan Klein uvedl, že film má podtitul Konec legendy, čímž naznačil, že po téměř 35 letech se celý příběh uzavře. Podle jiných zdrojů ale tvrdí, že by rád realizoval ještě další dva scénáře s~tematikou básníků.
+
+\section{Anděl Páně 2}
+
+Anděl Páně 2 je filmová pohádková komedie režiséra Jiřího Stracha z~roku 2016. Premiéru měla 1. prosince 2016. Jedná se o~volné pokračování pohádky Anděl Páně z~roku 2005. K~titulkům nazpívali píseň Karel Gott a jeho dcera Charlotte Ella Gottová.
+
+Film se stal nejvíce navštíveným českým filmem v~úvodním víkendu. Při televizní premiéře na Štědrý večer 2017 na programu ČT1 se s~více než třemi miliony diváků stal nejsledovanější štědrovečerní pohádkou za posledních 15 let. Film se natáčel v~Kraji Vysočina, zejména na hradě Ledeč nad Sázavou, a také v~Českém Krumlově.
+
+Anděl Petronel stále pracuje u~Nebeské brány, ale je přesvědčen, že by si zasloužil lepší službu. Jeho věčný pokušitel, čert Uriáš, začne Petronela ponoukat. Stačí utrhnout jablíčko ze stromu Poznání a bude vědět to, co ví jen Bůh! A~cesta k~zaslouženému uznání bude volná. Hádka Petronela s~Uriášem o~jablko Poznání ale skončí neslavně. V~potyčce se vzácné ovoce skutálí až na Zemi. Anděl a čert-pokušitel musí šupem na svět jablko Poznání najít a přinést zpátky. V~předvečer svátku svatého Mikuláše se zamotají do podivuhodného reje. Setkávají se s~malou Anežkou a její krásnou maminkou Magdalenou, partou nepoctivých koledníků, vydřiduchem Košťálem i sympatickým Párkařem. Než se jim podaří jablko najít a vrátit tam, kam patří, bude třeba zažít velké dobrodružství a projít několika nebezpečnými situacemi. A~po řadě lidských i „božských" zkoušek naši hrdinové nakonec zjistí, že cesta k~poznání vede především přes sebe sama, přes objevení síly přátelství, lásky a schopnosti odpuštění.
+
+\section{Po strništi bos}
+%----------------
+Po strništi bos je český film režiséra Jana Svěráka z~roku 2017. Ten napsal i scénář na motivy stejnojmenné knihy Zdeňka Svěráka. Je to desátý celovečerní film Jana Svěráka a sedmý, na kterém spolupracoval se svým otcem Zdeňkem. Film dějově předchází filmu Obecná škola z~roku 1991.
+
+Původní scénář k~filmu vznikal v~roce 2002, ve kterém se Zdeněk Svěrák striktně držel faktů a z~toho důvodu byl film obtížně zpracovatelný. Jan Svěrák mu proto navrhl, aby raději napsal knihu. V~té už Zdeněk Svěrák dokázal fabulovat a příběh byl pro film srozumitelnější. Scénář pak spolu několikrát přepisovali. Stejnojmenná autobiografická kniha vyšla v~roce 2013 a popisuje v~ní svá dětská léta prožitá v~Kopidlně během období Protektorátu Čechy a Morava.
+
+Film začali natáčet v~srpnu 2016 ve Slavonicích. Některé scény se točily i na Žatecku, na pražském Bohdalci a v~obci Kroučová na Rakovnicku.
+
+\section{Ženy v~běhu}
+
+Ženy v~běhu je česká filmová komedie z~roku 2019 režiséra Martina Horského. Horský k~filmu napsal i scénář a film je pro něj zároveň jeho režijním debutem. V~hlavních rolích se objevili Zlata Adamovská, Tereza Kostková, Veronika Khek Kubařová, Jenovéfa Boková, Ondřej Vetchý, Vladimír Polívka a Martin Hofmann. Film měl premiéru v~kinech 31. ledna 2019. Televizní premiéra proběhla 5. září 2020 na televizi Prima. Televizní premiéru sledovalo 1,26 milionů diváků ve kategorii 15+, což z~filmu činí nejsledovanější pořad dne.
+
+Film získal průměrné až nadprůměrné recenze od filmových kritiků. Ihned po uvedení do kin se těšil velkému diváckému zájmu. Snímek dosáhl z~českých filmů nejrychleji návštěvnosti milionu diváků za celou novodobou historii. Vysoké až velmi vysoké průměrné hodnocení získal na databázích českých filmů. Toto hodnocení se v~čase pochopitelně trochu mění (tak jak přibývají nová hodnocení), ale na ČSFd.cz se dlouhodobý průměr pohybuje kolem 71 \%, na FDb.cz dokonce přes 81 \%.
+
+Základní zápletka filmu je následující. Věře (Zlata Adamovská) nečekaně zemře manžel (Bolek Polívka) a ona se rozhodne splnit jeho poslední přání, uběhnout maraton. Protože je to ale téměř nemožné, rozhodne se, že poběží rodinnou štafetu spolu se svými dcerami Marcelou (Tereza Kostková), Bárou (Veronika Khek Kubařová) a Kačkou (Jenovéfa Boková). Každá z~žen ale také řeší své vlastní osobní problémy.
+
+\section{Vlastníci}
+
+Vlastníci je (hořká) filmová komedie z~roku 2019 režiséra Jiřího Havelky, kterou natočil podle vlastního scénáře. Příběh vychází ze hry Společenství vlastníků, kterou Havelka rovněž napsal a režíroval a uváděl ji divadelní soubor VOSTO5. Toto představení získalo Cenu Divadelních novin za sezonu 2017/2018 v~kategorii alternativní divadlo.
+
+V~hlavních rolích se objevili Tereza Ramba, Vojtěch Kotek, Klára Melíšková, Pavla Tomicová, Ondřej Malý, Dagmar Havlová, Jiří Lábus, Kryštof Hádek, Stanislav Majer, Andrej Polák, David Novotný a Ladislav Trojan. Premiéra filmu v~kinech proběhla dne 21. listopadu 2019.
+
+Děj filmu se odehrává na schůzi společenství vlastníků jednoho bytového domu. Vlastníci mají různé (a mnohdy zcela protichůdné) představy, co s~domem udělat. Manželé Zahrádkovi (Tereza Ramba a Vojtěch Kotek) se snaží dům zachránit a přidávají se k~nim nadšení novomanželé Bernáškovi (Maria Sawa a Jiří Černý). Naproti tomu paní Procházková (Pavla Tomicová) s~panem Novákem (Ondřej Malý) chtějí svůj majetek nějak zhodnotit, pan Nitranský (Andrej Polák) zase touží po půdě. Paní Roubíčková (Klára Melíšková) žádá důsledné dodržování pravidel schůze, pan Kubát (Jiří Lábus) ale veškerá rozhodnutí sabotuje.
+
+\section{Párty Hárd (doplněno)}
+
+Párty Hárd je černou teenage komedií z~roku 2019, kterou podobně jako Život není krásný (2008) či Na plech (2025) režíroval Martin Pohl (známý jako Řezník), vystudovaný inženýr na Vysoké škole ekonomické a populární hardcore rapový umělec, aktivní již od začátku tisíciletí.
+
+Hlavní role filmu si zahráli Jakub Kalián, Daniel Žáček, Jiří Bohatý, Adam Ernest, Karolína Šafránková, Radim Neuvirt, Václav Žáček, Radek Hásek, Marek Milko a Mirek Čáslavka.
+
+Tomáš je šikanován od svého despotického otce do té míry, že trpí inkontinencí, a Péťu zase sužuje vědomí, že je stále panicem – což je fakt, který mu neustále předhazuje jak třídní král Pája Poulíček, tak jeho vlastní táta. Péťa je navíc silně zamilovaný do krásné spolužačky Lindy, jenže vůbec neví, jak na ni. Po moudrých radách od místního bezdomovce Derviše se naši hrdinové odeberou opatřit alkohol a jiné drogy, které mají zaručit úspěšnost akce, kterou nakonec za účelem vyšplhání ve třídním žebříčku zorganizují. Místnímu dealerovi pervitinu Grundzovi ovšem za nejasných okolností explodovala jeho varna, takže musí společně onu drogu uvařit ve škole při hodině chemie. Nakonec se jim večírek opravdu uskutečnit povede, nicméně se akce nezdaří úplně podle plánu.
+
+% ===== Konec textu ==================================================================================
+
+\end{document}
